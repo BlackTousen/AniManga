@@ -16,12 +16,9 @@ export const Login = props => {
             .then(res => res.json())
             .then(user => { 
                 if (!user[0]) { 
-                    console.log("User not found!")
                     return false }
                 else if (user[0].username === username.current.value) { return user[0] }
-                else { 
-                    console.log("Username no match!",username.current.value,user[0])
-                    return false }
+                else { return false }
             })
     }
 
