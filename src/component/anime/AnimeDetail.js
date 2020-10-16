@@ -13,25 +13,26 @@ export const AnimeDetail = () => {
   const { animeId } = useParams();
 
   useEffect(() => {
-      getWatchingList().then(x => {
-          let found = x.find(list => parseInt(list.userId) === parseInt(localStorage.getItem("loginId")) )
-          console.log(found)
-          setWatchingList(found)
-      })
+    getWatchingList().then((x) => {
+      let found = x.find(
+        (list) =>
+          parseInt(list.userId) === parseInt(localStorage.getItem("loginId"))
+      );
+      setWatchingList(found);
+    });
     getAnimeById(animeId).then((res) => {
       setMyAnime(res);
-      
     });
   }, []);
 
   const constructAnimeObject = () => {
     // setIsLoading(true);
     if (animeId) {
-        //PUT - update
+      //PUT - update
       createList({
         animeId: animeId,
         completed: false,
-        userId: parseInt(localStorage.getItem("loginId"))
+        userId: parseInt(localStorage.getItem("loginId")),
       }).then(() => history.push(`/anime/myAnime`));
     }
   };
