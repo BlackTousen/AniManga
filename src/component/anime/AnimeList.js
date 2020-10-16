@@ -21,7 +21,6 @@ export const AnimeList = () => {
     useEffect(() => {
         getAnimeByPage(0).then(res => { 
             setAnime(res)
-            console.log("Use effect",res)
         })
     }, [])
 

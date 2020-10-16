@@ -1,4 +1,16 @@
 {
+  "lists": [
+    {
+      "id": 1,
+      "watching": [
+        "42707",
+        "14232",
+        "1"
+      ],
+      "completed": [],
+      "userId": 2
+    }
+  ],
   "users": [
     {
       "id": 1,

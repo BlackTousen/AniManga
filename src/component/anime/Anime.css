@@ -1,9 +1,14 @@
-.animeList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
+/* .animePanel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  } */
+  .animeList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+    
 .animeCard {
   width: 15em;
   flex-basis: 28%;

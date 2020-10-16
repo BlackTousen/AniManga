@@ -31,7 +31,7 @@ export const AnimeProvider = props => {
         })
     }
 
-    const getAnimeById = id => {
+    const getAnimeById = (id = Math.floor(Math.random() * 1200)) => {
         return fetch(`https://kitsu.io/api/edge/anime/${id}`)
         .then(res => res.json())
         .then(res => { 

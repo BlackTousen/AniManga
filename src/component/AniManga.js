@@ -4,6 +4,7 @@ import { NavBar } from "./nav/NavBar"
 import { ApplicationViews } from "./ApplicationViews"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
+import { UserProvider } from "./users/UserProvider"
 // import "./KandyKorner.css"
 
 export const AniManga = () => (
@@ -19,6 +20,7 @@ export const AniManga = () => (
         }
         else { return <Redirect to="/login"/>; }
     }}/>
+    <UserProvider>
     <Route path="/login">
         <Login />
     </Route>
@@ -26,6 +28,7 @@ export const AniManga = () => (
         <Register />
 
     </Route>
+    </UserProvider>
 
     </>
 )
