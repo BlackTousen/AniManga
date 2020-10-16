@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../users/UserProvider";
 import "./Login.css";
 
 export const Register = (props) => {
@@ -10,6 +11,9 @@ export const Register = (props) => {
   const conflictDialog = useRef();
   const conflictDialog1 = useRef();
   const history = useHistory();
+  const { createList } = useContext(UserContext);
+
+
 
   const existingUserCheck = () => {
     return fetch(`http://localhost:8088/users?email=${email.current.value}`)
@@ -47,6 +51,7 @@ export const Register = (props) => {
               .then((createdUser) => {
                 if (createdUser.hasOwnProperty("id")) {
                   localStorage.setItem("loginId", createdUser.id);
+                  createList(createdUser.id)
                   history.push("/");
                 }
               });
