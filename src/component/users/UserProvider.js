@@ -15,21 +15,17 @@ export const UserProvider = (props) => {
       body: JSON.stringify(anime),
     });
   };
-  const createList = () => {
+  const createList = (list) => {
     return fetch(`http://localhost:8088/lists/`, {
-      method: "PATCH",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-          userId: localStorage.getItem("loginId"),
-          completed: [],
-          watching: []
-      }),
+      body: JSON.stringify(list),
     });
   };
   const getWatchingList = () => {
-    return fetch(`http://localhost:8088/lists?_expand=user`)
+    return fetch(`http://localhost:8088/lists?_expand=user&userId=${localStorage.getItem("loginId")}`)
     .then(res => res.json())
   };
   const getUserById = (id) => {

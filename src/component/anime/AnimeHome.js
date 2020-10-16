@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { AnimeHomeCard } from "./AnimeCard";
+import { AnimeHomeCard, AnimeSearchCard } from "./AnimeCard";
 import { AnimeContext } from "./Provider";
 import "./Anime.css";
 import { UserContext } from "../users/UserProvider";
@@ -11,23 +11,21 @@ export const AnimeHome = () => {
   const [filteredAnime1, setAnime] = useState([]);
   const [filteredAnime, setAnime1] = useState([]);
 
-  // Page selection
-  //     result = page - 1
-  //     if (result = 0) { getAnimeByPage() }
-  //     else {
-  //         result * 10 + 1
-  //     getAnimeByPage(result)
-  // }
+
 
 
   useEffect(() => {
     getWatchingList().then((res) => {
-        const x = res.find(list => list.userId === parseInt(localStorage.getItem("loginId")) )
-        const range = x.watching.length - 1
-        const randomChoice = Math.floor(Math.random() * range + 1)
-      getAnimeById(x.watching[randomChoice])
+        let x = res.filter(list => list.completed === false)
+        let range = x.length
+        let randomChoice = Math.floor(Math.random() * range)
+        getAnimeById(x[randomChoice]?.animeId)
       .then(setAnime1);
     });
+    let range = 1500
+    let randomChoice = Math.floor(Math.random() * range)
+    getAnimeById(randomChoice).then(setAnime)
+
   }, []);
 
   const history = useHistory();
@@ -37,7 +35,10 @@ export const AnimeHome = () => {
       <div className="animePanel">
         <div className="animeList">
           <AnimeHomeCard key={filteredAnime.id} anime={filteredAnime} />
-        </div>
+      </div>
+        <div className="animeList">
+          <AnimeSearchCard key={filteredAnime1.id} anime={filteredAnime1} />
+      </div>
       </div>
     </>
   );

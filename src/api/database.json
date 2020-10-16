@@ -2,13 +2,27 @@
   "lists": [
     {
       "id": 1,
-      "watching": [
-        "42707",
-        "14232",
-        "1"
-      ],
-      "completed": [],
+      "animeId": 42707,
+      "completed": false,
       "userId": 2
+    },
+    {
+      "id": 2,
+      "animeId": 14232,
+      "completed": false,
+      "userId": 2
+    },
+    {
+      "id": 3,
+      "animeId": 1,
+      "completed": false,
+      "userId": 2
+    },
+    {
+      "animeId": "748",
+      "completed": false,
+      "userId": 3,
+      "id": 4
     }
   ],
   "users": [
@@ -23,6 +37,13 @@
       "lastName": "Robertson",
       "username": "BlackTousen",
       "id": 2
+    },
+    {
+      "email": "hello@hello.com",
+      "firstName": "Billy",
+      "lastName": "Bob",
+      "username": "Hello",
+      "id": 3
     }
   ]
 }
