@@ -6,7 +6,7 @@ import { UserContext } from "../users/UserProvider";
 
 export const AnimeDetail = () => {
   const { anime, getAnimeById } = useContext(AnimeContext);
-  const { addToList, getWatchingList } = useContext(UserContext);
+  const { createList, getWatchingList } = useContext(UserContext);
   const [myAnime, setMyAnime] = useState({});
   const [watchingList, setWatchingList] = useState([]);
   const history = useHistory();
@@ -27,12 +27,11 @@ export const AnimeDetail = () => {
   const constructAnimeObject = () => {
     // setIsLoading(true);
     if (animeId) {
-        const newWatchingList = watchingList.watching
-        newWatchingList.push(animeId)
-      console.log("original",watchingList,"new")
         //PUT - update
-      addToList(watchingList.id,{
-        watching: newWatchingList
+      createList({
+        animeId: animeId,
+        completed: false,
+        userId: parseInt(localStorage.getItem("loginId"))
       }).then(() => history.push(`/anime/myAnime`));
     }
   };

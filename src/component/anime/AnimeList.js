@@ -1,45 +1,61 @@
-import React, { useContext, useEffect, useState } from "react"
-import { useHistory } from "react-router-dom"
-import { AnimeCard } from "./AnimeCard"
-import { AnimeContext } from "./Provider"
-import "./Anime.css"
-
-
+import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { AnimeCard } from "./AnimeCard";
+import { AnimeContext } from "./Provider";
+import "./Anime.css";
+import { UserContext } from "../users/UserProvider";
 
 export const AnimeList = () => {
-    const { anime, getAnimeByGenre, getAnimeByName, getAnimeByPage } = useContext(AnimeContext) 
-    const [filteredAnime, setAnime] = useState()
+  const { anime, getAnimeById } = useContext(AnimeContext);
+  const { getWatchingList } = useContext(UserContext);
+  const [filteredAnime, setFilteredAnime] = useState([]);
+  const [filteredAnime1, setFilteredAnime1] = useState([]);
 
-// Page selection
-//     result = page - 1 
-//     if (result = 0) { getAnimeByPage() }
-//     else { 
-//         result * 10 + 1 
-//     getAnimeByPage(result) 
-// }
+  // Page selection
+  //     result = page - 1
+  //     if (result = 0) { getAnimeByPage() }
+  //     else {
+  //         result * 10 + 1
+  //     getAnimeByPage(result)
+  // }
 
-    useEffect(() => {
-        getAnimeByPage(0).then(res => { 
-            setAnime(res)
-        })
-    }, [])
+  useEffect(() => {
+    getWatchingList()
+      .then((res) => {
+        handleAnime(res);
+      });
+  }, []);
 
-    const history = useHistory()
+  const handleAnime = (test) => {
+    let x = [];
+    for (const y of test) {
+      getAnimeById(y.animeId).then((res) => {
+        x.push(res);
+      }).then(_ => {
+          setFilteredAnime1(x)
+      });
+    }
+  };
 
+  // useEffect(() => {
+  //     let x = []
+  //      filteredAnime.map(x=> {
+  //         getAnimeById(x.animeId)
+  //     }).then(res => {
+  //         x.push(res)
+  //     })
+  // },[filteredAnime])
 
-    return (
-        <>
-        <h2>Anime!</h2>
-        <div className="animeList">
-            {filteredAnime?.map(a => {
-                return (
-                    <AnimeCard 
-                    key={a.id}
-                    anime={a}
-                    />
-                )
-            })}
-        </div>
-        </>
-    )
-}
+  const history = useHistory();
+
+  return (
+    <>
+      <h2>My Listy Thangz</h2>
+      <div className="animeList">
+        {filteredAnime1.map(a => {
+          return <AnimeCard key={a.id} anime={a} />
+        })}
+      </div>
+    </>
+  );
+};

@@ -11,7 +11,6 @@ export const Register = (props) => {
   const conflictDialog = useRef();
   const conflictDialog1 = useRef();
   const history = useHistory();
-  const { createList } = useContext(UserContext);
 
 
 
@@ -51,7 +50,6 @@ export const Register = (props) => {
               .then((createdUser) => {
                 if (createdUser.hasOwnProperty("id")) {
                   localStorage.setItem("loginId", createdUser.id);
-                  createList(createdUser.id)
                   history.push("/");
                 }
               });

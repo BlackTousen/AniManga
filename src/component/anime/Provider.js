@@ -4,7 +4,7 @@ import { isCompositeComponent } from "react-dom/test-utils"
 export const AnimeContext = createContext()
 
 export const AnimeProvider = props => {
-    const [anime, setAnime] = useState()
+    const [anime, setAnime] = useState([])
 
     const getAnimeByPage = (offset = 0) => {
         return fetch(`https://kitsu.io/api/edge/anime?page[offset]=${offset}&sort=slug`)
