@@ -7,6 +7,8 @@ import { AnimeProvider } from "./anime/Provider";
 import { Home } from "./Home";
 import { UserProvider } from "./users/UserProvider";
 import { SearchList } from "./search/SearchList";
+import { SearchProvider } from "./search/SearchProvider";
+import { AnimeSearch } from "./search/AnimeSearch";
 // import { Home } from "./Home"
 
 export const ApplicationViews = (props) => {
@@ -40,12 +42,14 @@ export const ApplicationViews = (props) => {
       </AnimeProvider>
 
       {/* Search Starts here */}
-
+<SearchProvider>
       <AnimeProvider>
         <Route exact path="/anime/search">
+          <AnimeSearch />
           <SearchList />
         </Route>
       </AnimeProvider>
+      </SearchProvider>
 
       {/* Render the animal list when http://localhost:3000/animals */}
       {/* <Route exact path="/anime">
