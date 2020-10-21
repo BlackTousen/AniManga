@@ -28,6 +28,18 @@ export const UserProvider = (props) => {
     return fetch(`http://localhost:8088/lists?_expand=user&userId=${localStorage.getItem("loginId")}`)
     .then(res => res.json())
   };
+  const getList = (x) => {
+    return fetch(`http://localhost:8088/lists?_expand=user&userId=${localStorage.getItem("loginId")}&animeId=${x}`)
+    .then(res => res.json())
+  };
+  const PatchAnime = (x,info) => {
+    return fetch(`http://localhost:8088/lists/${x}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json",},
+      body: JSON.stringify(info)
+    })
+    .then(res => res.json())
+  };
   const getUserById = (id) => {
     return fetch(`http://localhost:8088/users/${id}`, {
 
@@ -51,7 +63,7 @@ export const UserProvider = (props) => {
       value={{
         users,
         getUsers,
-        getUserById,
+        getUserById, getList, PatchAnime,
         addToList, getWatchingList, createList
       }}
     >

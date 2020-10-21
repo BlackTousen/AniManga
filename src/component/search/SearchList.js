@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { AnimeCard } from "../anime/AnimeCard";
 import { AnimeContext } from "../anime/Provider";
 import { Pagination, Icon } from "semantic-ui-react";
+import { Card, Button } from "semantic-ui-react";
+
 import "../anime/Anime.css";
 import { SearchContext } from "./SearchProvider";
 
@@ -78,7 +80,7 @@ export const SearchList = () => {
 
   return (
     <>
-      <button
+      <Button
         onClick={() => {
           if (page > 1) {
             previousPage();
@@ -86,25 +88,26 @@ export const SearchList = () => {
         }}
       >
         Previous Page
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={() => {
           nextPage();
         }}
       >
         Next Page
-      </button>
-      <h2>Anime!</h2>
+      </Button>
+      <h2>Browse The Library...</h2>
       <div className="animeList">
+        <Card.Group itemsPerRow={2}>
         {filteredAnime?.map((a) => {
           return (
             <>
               <AnimeCard key={a.id} anime={a} />
             </>
           );
-        })}
+        })}</Card.Group>
       </div>
-      <button
+      <Button
         onClick={() => {
           if (page > 1) {
             previousPage();
@@ -112,14 +115,14 @@ export const SearchList = () => {
         }}
       >
         Previous Page
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={() => {
           nextPage();
         }}
       >
         Next Page
-      </button>
+      </Button>
       {/* <Pagination 
                      defaultActivePage={5}
                      ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}

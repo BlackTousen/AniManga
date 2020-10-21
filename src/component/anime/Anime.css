@@ -1,3 +1,19 @@
+/* body {
+  background-color: #700CBC;
+  color: #FDED2A;
+} */
+/* a {
+  color: #FDED2A;
+}
+a:visited {
+  color: #F7F4D4;
+
+} */
+/* a:hover {
+  color: crimson;
+
+} */
+
 .animePanel {
     display: flex;
     flex-wrap: wrap;
@@ -7,26 +23,33 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    /* width: 15em; */
   }
     
-.animeCard {
-  width: 15em;
-  flex-basis: 28%;
-  margin: 1em;
-  padding: 1em;
-  border: 1px solid goldenrod;
-  display: flex;
-  flex-direction: column;
-}
+  /* .animeCard {
+    flex-basis: 28%;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid#FDED2A;
+    display: flex;
+    flex-direction: column;
+  }
+  .animeListCard {
+    height: 5em;
+    width: 15em;
+    flex-basis: 28%;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid#FDED2A;
+    display: flex;
+    flex-direction: column;
+  }
 .animeForm {
   width: 40em;
-}
+} */
 .center {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
 }
 .synopsis {
   font-size: 1.5ex;

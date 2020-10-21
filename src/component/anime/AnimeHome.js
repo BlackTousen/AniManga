@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { AnimeHomeCard, AnimeSearchCard } from "./AnimeCard";
+import { AnimeCommentCard, AnimeHomeCard, AnimeSearchCard } from "./AnimeCard";
 import { AnimeContext } from "./Provider";
 import "./Anime.css";
 import { UserContext } from "../users/UserProvider";
@@ -36,7 +36,10 @@ export const AnimeHome = () => {
         <div className="animeList">
           <AnimeHomeCard key={filteredAnime.id} anime={filteredAnime} />
       </div>
-        <div className="animeList">
+      <div className="animeList">
+          <AnimeCommentCard />
+      </div>
+      <div className="animeList">
           <AnimeSearchCard key={filteredAnime1.id} anime={filteredAnime1} />
       </div>
       </div>

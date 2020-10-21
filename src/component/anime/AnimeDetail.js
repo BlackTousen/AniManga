@@ -6,7 +6,9 @@ import { UserContext } from "../users/UserProvider";
 
 export const AnimeDetail = () => {
   const { anime, getAnimeById } = useContext(AnimeContext);
-  const { createList, getWatchingList } = useContext(UserContext);
+  const { createList, getWatchingList, getList, addToList } = useContext(
+    UserContext
+  );
   const [myAnime, setMyAnime] = useState({});
   const [watchingList, setWatchingList] = useState([]);
   const history = useHistory();
@@ -25,19 +27,31 @@ export const AnimeDetail = () => {
     });
   }, []);
 
-  const constructAnimeObject = () => {
+  const constructAnimeObject = (complete = false) => {
     // setIsLoading(true);
     if (animeId) {
+      getList(animeId).then((res) => {
+        if (!!res === false) {
+          addToList(res.id, {
+            completed: complete,
+            userId: parseInt(localStorage.getItem("loginId")),
+          }).then(() => history.push(`/anime/myAnime`));
+        } else {
+          createList({
+            animeId: animeId,
+            completed: complete,
+            userId: parseInt(localStorage.getItem("loginId")),
+          }).then(() => history.push(`/anime/myAnime`));
+        }
+      });
       //PUT - update
-      createList({
-        animeId: animeId,
-        completed: false,
-        userId: parseInt(localStorage.getItem("loginId")),
-      }).then(() => history.push(`/anime/myAnime`));
     }
   };
   const handleAdd = (e) => {
     constructAnimeObject();
+  };
+  const handleComplete = (e) => {
+    constructAnimeObject(true);
   };
 
   return (
@@ -65,7 +79,13 @@ export const AnimeDetail = () => {
           >
             Start Watching
           </button>
-          <button className="SearchButton" hidden={false} onClick={() => {}}>
+          <button
+            className="SearchButton"
+            hidden={false}
+            onClick={() => {
+              handleComplete();
+            }}
+          >
             Completed
           </button>
         </div>
@@ -77,13 +97,33 @@ export const AnimeDetail = () => {
               history.push("/anime/myAnime");
             }}
           >
+            Add Comment
+          </button>
+          <button
+            className="SearchButton"
+            hidden={false}
+            onClick={() => {
+              // history.push("/anime/Search");
+            }}
+          >
+            View Comments
+          </button>
+        </div>
+        <p></p>
+        <div className="buttons">
+          <button
+            className="AnimeButton"
+            onClick={() => {
+              // history.push("/anime/myAnime");
+            }}
+          >
             My Anime
           </button>
           <button
             className="SearchButton"
-            hidden={true}
+            hidden={false}
             onClick={() => {
-              history.push("/anime/animeSearch");
+              history.push("/anime/Search");
             }}
           >
             Anime Search
