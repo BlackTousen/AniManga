@@ -5,7 +5,7 @@ import { ApplicationViews } from "./ApplicationViews"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { UserProvider } from "./users/UserProvider"
-// import "./KandyKorner.css"
+import "../index.css"
 
 export const AniManga = () => (
     <>

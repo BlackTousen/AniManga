@@ -105,11 +105,18 @@ export const AnimeList = () => {
   //         x.push(res)
   //     })
   // },[filteredAnime])
-  const cardAlign = list => {
-    let x = list.length
-    if (x < 3) { return x }
-    else { return 3 }
-  }
+  const cardAlign = (list = [1]) => {
+    let x = list.length;
+    if (x < 3) {
+      if (x < 1) {
+        x = 1;
+      }
+      return x;
+    } else {
+      x = 3;
+     return x;
+    }
+  };
 
   const history = useHistory();
 
@@ -120,7 +127,7 @@ export const AnimeList = () => {
       <div className="animeList">
         <Card.Group itemsPerRow={cardAlign(filteredAnimeW)}>
           {filteredAnimeW?.map((a) => {
-            return <AnimeCard key={a.id} anime={a} />;
+            return <AnimeCard key={a.id} anime={a} listed={true} />;
           })}
         </Card.Group>
       </div>
@@ -128,7 +135,7 @@ export const AnimeList = () => {
       <div className="animeList">
         <Card.Group itemsPerRow={cardAlign(filteredAnimeC)}>
           {filteredAnimeC?.map((a) => {
-            return <AnimeCard key={a.id} anime={a} />;
+            return <AnimeCard key={a.id} anime={a} listed={true} />;
           })}
         </Card.Group>
       </div>

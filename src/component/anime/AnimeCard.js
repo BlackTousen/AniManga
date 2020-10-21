@@ -1,6 +1,7 @@
+import { UserContext } from "../users/UserProvider";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { Card } from "semantic-ui-react";
+import { Link, useHistory } from "react-router-dom";
+import { Card, Image } from "semantic-ui-react";
 import "./Anime.css";
 import { AnimeContext } from "./Provider";
 
@@ -8,16 +9,30 @@ import { AnimeContext } from "./Provider";
 
 
 
-export const AnimeCard = ({ anime }) => {
+export const AnimeCard = ({ anime, listed } = false) => {
+
+  const {deleteAnime} = useContext(UserContext)
+  const history = useHistory()
   return (
-      <Card color="purple">
+<>
+      <Card color="purple" >
         <Link to={`/anime/detail/${anime.id}`}>
-          <section className="animeCard">
-            <h3 className="anime__name">{anime?.attributes?.canonicalTitle ?? anime?.attributes?.abbreviatedTitles[0] ?? anime?.attributes?.titles.en }</h3>
+          <Card.Header textAlign="center">
+          {anime?.attributes?.canonicalTitle ?? anime?.attributes?.titles.en ?? anime?.attributes?.abbreviatedTitles[0] ?? anime?.attributes?.canonicalTitle ?? anime?.attributes?.titles.en }
+          </Card.Header>
+          {/* <section className="animeCard">
+            <h3 className="anime__name center">{anime?.attributes?.canonicalTitle ?? anime?.attributes?.abbreviatedTitles[0] ?? anime?.attributes?.titles.en }</h3>
             <div></div>
-          </section>
+          </section> */}
         </Link>
+        <Card.Content extra><button className="removeButton" hidden={!listed}
+        onClick={() => {
+          deleteAnime(anime.id)
+          history.push("/anime")
+        }}
+        >Remove</button></Card.Content>
         </Card>
+</>
     );
   
 }

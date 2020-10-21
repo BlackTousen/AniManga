@@ -44,10 +44,12 @@ export const ApplicationViews = (props) => {
       {/* Search Starts here */}
 <SearchProvider>
       <AnimeProvider>
+      <UserProvider>
         <Route exact path="/anime/search">
           <AnimeSearch />
           <SearchList />
         </Route>
+</UserProvider>
       </AnimeProvider>
       </SearchProvider>
 

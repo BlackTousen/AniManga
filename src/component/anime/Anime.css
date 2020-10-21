@@ -13,7 +13,41 @@ a:visited {
   color: crimson;
 
 } */
-
+.removeButton {
+  align-self: flex-end;
+  width: 100%;
+}
+.card {
+  width: 290px !important;
+}
+a:hover {
+  color: rgba(128, 255, 0, 0.438) !important;
+}
+a:link {
+  color: chartreuse;
+}
+a:visited {
+  color: rgba(128, 255, 0, 0.438) !important;
+}
+.ui.card>.content>.header, .ui.cards>.card>.content>.header {
+color: chartreuse !important;
+}
+.ui.cards>.purple.card, .ui.purple.card, .ui.purple.cards>.card {
+  background-color: darkslateblue;
+}
+.ui.card>.content>a.header,
+.ui.cards>.card>.content>a.header,
+.ui.card .meta,
+.ui.cards>.card .meta,
+.ui.card>.content>.description,
+.ui.cards>.card>.content>.description,
+.ui.card>.extra a:not(.ui),
+.ui.cards>.card>.extra a:not(.ui) {
+  color: whitesmoke !important;
+}
+/* .ui.cards>.card {
+  color: white;
+} */
 .animePanel {
     display: flex;
     flex-wrap: wrap;
@@ -47,6 +81,7 @@ a:visited {
   width: 40em;
 } */
 .center {
+  text-align: center;
   display: block;
   margin-left: auto;
   margin-right: auto;

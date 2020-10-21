@@ -12,7 +12,7 @@ export const SearchList = () => {
   const { anime, getAnimeByGenre, getAnimeByName, getAnimeByPage } = useContext(
     AnimeContext
   );
-  const { searchTerms, setSearchTerms } = useContext(SearchContext);
+  const { searchTerms, setSearchTerms, searchTermsG } = useContext(SearchContext);
   const [filteredAnime, setAnime] = useState();
   const [offset, setOffset] = useState(0);
   const [page, setPage] = useState(1);
@@ -36,7 +36,11 @@ export const SearchList = () => {
   useEffect(() => {
     if (searchTerms !== "") {
       getAnimeByName(searchTerms, offset).then(setAnime);
-    } else {
+    }
+    else if (searchTermsG !== "") {
+      getAnimeByGenre(searchTermsG,offset).then(setAnime)
+    }
+    else {
       getAnimeByPage(offset).then((res) => {
         setAnime(res);
       });
@@ -52,6 +56,16 @@ export const SearchList = () => {
       setOffset(offset + 1);
     }
   }, [searchTerms]);
+  useEffect(() => {
+    if (searchTermsG !== "") {
+      console.log(searchTermsG)
+      // If the search field is not blank, display matching animals
+      getAnimeByGenre(searchTermsG).then(setAnime);
+    } else {
+      // If the search field is blank, display all animals
+      setOffset(offset + 1);
+    }
+  }, [searchTermsG]);
 
   const nextPage = () => {
     let newPage = page + 1;
@@ -80,23 +94,27 @@ export const SearchList = () => {
 
   return (
     <>
-      <Button
+      <Button 
+      floated='left'
+      inverted color="green"
         onClick={() => {
           if (page > 1) {
             previousPage();
           }
         }}
-      >
-        Previous Page
-      </Button>
-      <Button
+        content="Previous Page"
+      />
+      <Button 
+      floated='right'
+      inverted color="green"
+      float="right"
         onClick={() => {
           nextPage();
         }}
-      >
-        Next Page
-      </Button>
-      <h2>Browse The Library...</h2>
+        content="Next Page"
+        />
+        <p></p>
+      <h2 className="center">Browse The Library...</h2>
       <div className="animeList">
         <Card.Group itemsPerRow={2}>
         {filteredAnime?.map((a) => {
@@ -106,24 +124,26 @@ export const SearchList = () => {
             </>
           );
         })}</Card.Group>
-      </div>
-      <Button
+      </div><p></p>
+      <Button 
+      floated='left'
+      inverted color="green"
         onClick={() => {
           if (page > 1) {
             previousPage();
           }
         }}
-      >
-        Previous Page
-      </Button>
-      <Button
+        content="Previous Page"
+      />
+      <Button 
+      floated='right'
+      inverted color="green"
+      float="right"
         onClick={() => {
           nextPage();
         }}
-      >
-        Next Page
-      </Button>
-      {/* <Pagination 
+        content="Next Page"
+        />      {/* <Pagination 
                      defaultActivePage={5}
                      ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
                      firstItem={{ content: <Icon name='angle double left' />, icon: true }}

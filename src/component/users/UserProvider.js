@@ -40,6 +40,16 @@ export const UserProvider = (props) => {
     })
     .then(res => res.json())
   };
+  const deleteAnime = id => {
+    return fetch(`http://localhost:8088/lists?animeId=${id}`)
+    .then(res => res.json())
+    .then(res => {
+      return fetch(`http://localhost:8088/lists/${res[0].id}`, {
+        method: "DELETE"
+      })
+    })
+    
+  }
   const getUserById = (id) => {
     return fetch(`http://localhost:8088/users/${id}`, {
 
@@ -64,7 +74,7 @@ export const UserProvider = (props) => {
         users,
         getUsers,
         getUserById, getList, PatchAnime,
-        addToList, getWatchingList, createList
+        addToList, getWatchingList, createList, deleteAnime
       }}
     >
       {" "}

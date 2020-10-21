@@ -34,13 +34,13 @@ export const AnimeHome = () => {
     <>
       <div className="animePanel">
         <div className="animeList">
-          <AnimeHomeCard key={filteredAnime.id} anime={filteredAnime} />
+          <AnimeHomeCard key={filteredAnime?.id} anime={filteredAnime} />
       </div>
       <div className="animeList">
           <AnimeCommentCard />
       </div>
       <div className="animeList">
-          <AnimeSearchCard key={filteredAnime1.id} anime={filteredAnime1} />
+          <AnimeSearchCard key={filteredAnime1?.id} anime={filteredAnime1} />
       </div>
       </div>
     </>

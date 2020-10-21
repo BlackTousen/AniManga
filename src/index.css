@@ -13,3 +13,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+a:hover {
+  color: rgba(128, 255, 0, 0.438);
+}
+a:link {
+  color: chartreuse;
+}
+a:visited {
+  color: rgba(128, 255, 0, 0.438);
+}

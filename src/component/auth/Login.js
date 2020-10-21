@@ -1,13 +1,14 @@
 import React, { useRef, useState } from "react"
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom"
-import { Button, Form, Input } from "semantic-ui-react";
+import { Form, Button } from "semantic-ui-react";
 import "./Login.css"
 
 
+
 export const Login = props => {
-    const [email,setEmail] = useState("")
-    const [username,setUsername] = useState("")
+    const [email,setEmail] = useState()
+    const [username,setUsername] = useState()
     // const password = useRef()
     const existDialog = useRef()
     const history = useHistory()
@@ -39,35 +40,38 @@ export const Login = props => {
 
     return (
         <main className="container--login">
-        <dialog className="dialog dialog--auth" ref={existDialog}>
-            <div>User does not exist</div>
-            <button className="button--close" onClick={e => existDialog.current.close()}>Close</button>
-        </dialog>
-        <Form onSubmit={handleLogin} inverted>
-        <h2>Welcome to Ani-Manga!</h2>
-        <h3>Please Sign In</h3>
-            <Form.Input
-                onChange={(event) => setUsername(event.target.value)}
-                id="form-input-username"
-                control={Input}
-                label="username"
-                placeholder="username"
-                width={6} />
-            <Form.Input
-                onChange={(event) => setEmail(event.target.value)}
-                id="form-input-email"
-                control={Input}
-                label="email"
-                placeholder="email"
-                width={6} />
-            <Button type="submit">
-                Login
-            </Button>
-        </Form>
-        <section className="link--register">
-            <Link to="/register">Not a member yet?</Link>
-        </section>
-    </main>
+            <dialog className="dialog dialog--auth" ref={existDialog}>
+                <div>User does not exist</div>
+                <button className="button--close" onClick={e => existDialog.current.close()}>Close</button>
+            </dialog>
+
+                <Form className="form--login" onSubmit={handleLogin}>
+                    <h1>Welcome to AniManga!</h1>
+                    <h2>Please sign in</h2>
+                        <Form.Input 
+                        onChange={e =>  setUsername(e.target.value)}
+                        type="text"
+                    label="Username"
+                        id="username"
+                            className="form-control"
+                            placeholder="username"
+                            required autoFocus />
+                        <Form.Input
+                        onChange={e =>  setEmail(e.target.value)}
+                        type="email"
+                        label="Email Address:"
+                            id="email"
+                            className="form-control"
+                            placeholder="Email address"
+                            required />
+                        <Button type="submit">
+                            Sign in
+                        </Button>
+                </Form>
+            <section className="link--register">
+                <Link to="/register">Not a member yet?</Link>
+            </section>
+        </main>
     )
 }
 
