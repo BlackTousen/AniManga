@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Card, CardDescription, Container, Divider } from "semantic-ui-react";
 import { AnimeContext } from "../anime/Provider";
 import { CommentContext } from "./CommentProvider";
 
-export const CommentList = () => {
-    const { comments, setComments, getComments } = useContext(CommentContext);
+export const CommentListById = () => {
+    const { comments, setComments, getCommentsById } = useContext(CommentContext);
     const { getAnimeById } = useContext(AnimeContext);
     const [ animeName,setAnimeName ] = useState("")
-
+    const {animeId} = useParams()
 
   function compare(a, b) {
     // Use toUpperCase() to ignore character casing
@@ -40,7 +40,7 @@ export const CommentList = () => {
 
 
   useEffect(() => {
-    getComments().then((res) => comments.sort(compare))
+    getCommentsById(animeId).then((res) => comments.sort(compare))
   }, []);
 
 //   const handleAnimeNames = list => {

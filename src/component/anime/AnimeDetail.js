@@ -98,7 +98,7 @@ export const AnimeDetail = () => {
             size="mini"
             className="AnimeButton"
             onClick={() => {
-              // history.push("/anime/myAnime");
+              history.push(`/anime/editComment/${animeId}`);
             }}
           />
           <Button 
@@ -108,7 +108,7 @@ export const AnimeDetail = () => {
             className="SearchButton"
             hidden={false}
             onClick={() => {
-              // history.push("/anime/Search");
+              history.push(`/anime/comments/${animeId}`);
             }}
           />
         </Button.Group>

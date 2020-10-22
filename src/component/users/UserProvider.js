@@ -1,5 +1,4 @@
 import React, { useState, createContext } from "react";
-import { isCompositeComponent } from "react-dom/test-utils";
 
 export const UserContext = createContext();
 

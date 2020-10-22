@@ -6,7 +6,7 @@ import "./Anime.css";
 import { UserContext } from "../users/UserProvider";
 import { render } from "@testing-library/react";
 import ReactDOM from "react-dom";
-import { Card, Button } from "semantic-ui-react";
+import { Card, Button, Divider } from "semantic-ui-react";
 
 export const AnimeList = () => {
   const { anime, getAnimeById } = useContext(AnimeContext);
@@ -126,11 +126,12 @@ export const AnimeList = () => {
       <h2>Currently Watching</h2>
       <div className="animeList">
         <Card.Group itemsPerRow={cardAlign(filteredAnimeW)}>
-          {filteredAnimeW?.map((a) => {
-            return <AnimeCard key={a.id} anime={a} listed={true} />;
-          })}
+          {filteredAnimeW?.map((a) => <AnimeCard key={a.id} anime={a} listed={true} />) }
         </Card.Group>
       </div>
+      <Divider section hidden/>
+      <Divider section inverted/>
+      <Divider section hidden/>
       <h2>Completed</h2>
       <div className="animeList">
         <Card.Group itemsPerRow={cardAlign(filteredAnimeC)}>

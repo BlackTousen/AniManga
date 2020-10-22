@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { AnimeCard } from "../anime/AnimeCard";
 import { AnimeContext } from "../anime/Provider";
-import { Pagination, Icon } from "semantic-ui-react";
+import { Pagination, Icon, Divider } from "semantic-ui-react";
 import { Card, Button } from "semantic-ui-react";
 
 import "../anime/Anime.css";
@@ -113,7 +113,9 @@ export const SearchList = () => {
         }}
         content="Next Page"
         />
-        <p></p>
+      <Divider section hidden />
+      <Divider section hidden />
+      <Divider section inverted/>
       <h2 className="center">Browse The Library...</h2>
       <div className="animeList">
         <Card.Group itemsPerRow={2}>
@@ -124,7 +126,9 @@ export const SearchList = () => {
             </>
           );
         })}</Card.Group>
-      </div><p></p>
+      </div>
+      <Divider section inverted/>
+
       <Button 
       floated='left'
       inverted color="green"
