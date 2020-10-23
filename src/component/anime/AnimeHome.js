@@ -20,13 +20,25 @@ export const AnimeHome = () => {
         let range = x.length
         let randomChoice = Math.floor(Math.random() * range)
         getAnimeById(x[randomChoice]?.animeId)
-      .then(setAnime1);
+      .then(res => { 
+        setAnime1(res.data) 
+      });
     });
+    getRandomAnime()
+  }, []);
+
+  const getRandomAnime = () => {
     let range = 1500
     let randomChoice = Math.floor(Math.random() * range)
-    getAnimeById(randomChoice).then(setAnime)
+    getAnimeById(randomChoice)
+    .then(res => {
+      if (res.status === "404") { getRandomAnime() }
+     else { setAnime(res.data) }
+    })
+    
 
-  }, []);
+  }
+
 
   const history = useHistory();
 

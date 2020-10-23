@@ -33,22 +33,23 @@ export const AnimeList = () => {
       .then(() => {});
   }, []);
 
-  const handleAnime = (test) => {
+  const handleAnime = (list) => {
     let x = [];
     let z = [];
-    for (const y of test) {
-      getAnimeById(y.animeId).then((res) => {
-        if (y.completed === true) {
-          x.push(res);
-        } else if (y.completed === false) {
-          z.push(res);
-        }
-      });
+    let animeRequests = []
+    for (const y of list) {
+      let animePromise = getAnimeById(y.animeId).then((res) => {
+        if (y.completed === true) { x.push(res.data); }
+         else if (y.completed === false) { z.push(res.data); }
+      })
+      animeRequests.push(animePromise)
     }
-    setTimeout(() => {
+    Promise.all(animeRequests).then(_ =>{
       setFilteredAnimeW(z);
       setFilteredAnimeC(x);
-    }, 500);
+    })
+    // setTimeout(() => {
+    // }, 500);
   };
 
   useEffect(() => {

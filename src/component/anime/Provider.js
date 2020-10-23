@@ -53,7 +53,7 @@ export const AnimeProvider = (props) => {
       .then((res) => res.json())
       .then((res) => {
         setAnime(res.data);
-        return res.data;
+        return res;
       });
   };
 

@@ -31,7 +31,7 @@ export const AnimeDetail = () => {
       setWatchingList(found);
     });
     getAnimeById(animeId).then((res) => {
-      setMyAnime(res);
+      setMyAnime(res.data);
     });
   }, []);
 
