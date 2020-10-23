@@ -35,6 +35,9 @@ color: chartreuse !important;
 .ui.cards>.purple.card, .ui.purple.card, .ui.purple.cards>.card {
   background-color: darkslateblue;
 }
+.extra {
+  color: aliceblue !important;
+}
 .ui.card>.content>a.header,
 .ui.cards>.card>.content>a.header,
 .ui.card .meta,
@@ -94,4 +97,8 @@ color: chartreuse !important;
 .buttons {
   display: flex;
   justify-content: space-between;
+}
+textarea {
+  resize: none;
+  width: 100%;
 }

@@ -17,9 +17,10 @@ export const AnimeCard = ({ anime, listed } = false) => {
 <>
       <Card color="purple" >
         <Link to={`/anime/detail/${anime.id}`}>
-          <Card.Header textAlign="center">
+          <h3><Card.Header >
           {anime?.attributes?.canonicalTitle ?? anime?.attributes?.titles.en ?? anime?.attributes?.abbreviatedTitles[0] ?? anime?.attributes?.canonicalTitle ?? anime?.attributes?.titles.en }
-          </Card.Header>
+          </Card.Header></h3>
+          <Card.Content textAlign="center" extra >{anime?.attributes?.canonicalTitle} - {anime?.attributes?.abbreviatedTitles[0]} - {anime?.attributes?.titles.en} </Card.Content>
           {/* <section className="animeCard">
             <h3 className="anime__name center">{anime?.attributes?.canonicalTitle ?? anime?.attributes?.abbreviatedTitles[0] ?? anime?.attributes?.titles.en }</h3>
             <div></div>
@@ -58,7 +59,8 @@ export const AnimeHomeCard = ({ anime }) => (
         <Card color="purple">
       <Link to={`/anime/detail/${anime.id}`}>
         <section className="animeCard">
-          <h3 className="anime__name">{anime?.attributes?.canonicalTitle ?? anime?.attributes?.abbreviatedTitles[0] ?? anime?.attributes?.titles.en }</h3>
+          <h3><Card.Header>{anime?.attributes?.canonicalTitle ?? anime?.attributes?.abbreviatedTitles[0] ?? anime?.attributes?.titles.en }</Card.Header></h3>
+          <Card.Content extra> {anime?.attributes?.titles.en} - {anime?.attributes?.canonicalTitle} - {anime?.attributes?.abbreviatedTitles[0]} </Card.Content>
           <div></div>
         </section>
       </Link></Card>
@@ -71,10 +73,12 @@ export const AnimeHomeCard = ({ anime }) => (
         </Link>
         <Card color="purple" itemsPerRow={6}>
       <Link to={`/anime/detail/${anime.id}`}>
-        <section className="animeListCard">
+      <h3><Card.Header>{anime?.attributes?.canonicalTitle ?? anime?.attributes?.abbreviatedTitles[0] ?? anime?.attributes?.titles.en }</Card.Header></h3>
+      <Card.Content extra> {anime?.attributes?.titles.en} - {anime?.attributes?.canonicalTitle} - {anime?.attributes?.abbreviatedTitles[0]} </Card.Content>
+        {/* <section className="animeListCard">
           <h3 className="anime__name">{anime?.attributes?.canonicalTitle ?? anime?.attributes?.abbreviatedTitles[0] ?? anime?.attributes?.titles.en }</h3>
           <div></div>
-        </section>
+        </section> */}
       </Link></Card>
     </section>
   );

@@ -1,11 +1,12 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./NavBar.css";
-import { Menu } from "semantic-ui-react";
+import { Menu, Sticky } from "semantic-ui-react";
 
 export const NavBar = (props) => {
   return (
     <>
+    <Sticky>
       <Menu inverted>
         <Menu.Item
         color="purple"
@@ -29,6 +30,7 @@ export const NavBar = (props) => {
           </Menu.Item>
         </Menu.Menu>
       </Menu>
+      </Sticky>
     </>
   );
 };

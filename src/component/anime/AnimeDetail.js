@@ -3,14 +3,21 @@ import { useHistory, useParams } from "react-router-dom";
 import { AnimeContext } from "./Provider";
 import "./Anime.css";
 import { UserContext } from "../users/UserProvider";
-import { Card, Image, Button } from "semantic-ui-react";
+import { Card, Image, Button, Modal } from "semantic-ui-react";
+import { CommentContext } from "../comments/CommentProvider";
+
+
+
+
+
 
 export const AnimeDetail = () => {
   const { anime, getAnimeById } = useContext(AnimeContext);
-  const { createList, getWatchingList, getList, addToList } = useContext(
-    UserContext
-  );
+  const { addComment } = useContext(CommentContext);
+  const { createList, getWatchingList, getList, addToList } = useContext(UserContext);
   const [myAnime, setMyAnime] = useState({});
+  const [open, setOpen] = useState(false)
+  const [comment, setComment] = useState("")
   const [watchingList, setWatchingList] = useState([]);
   const history = useHistory();
   const { animeId } = useParams();
@@ -32,7 +39,7 @@ export const AnimeDetail = () => {
     // setIsLoading(true);
     if (animeId) {
       getList(animeId).then((res) => {
-        if (!!res === true) {
+        if (!!res[0] === true) {
           addToList(res[0].id, {
             completed: complete,
             userId: parseInt(localStorage.getItem("loginId")),
@@ -55,7 +62,47 @@ export const AnimeDetail = () => {
     constructAnimeObject(true);
   };
 
-  return (
+  return ( <>
+           <Modal
+                onClose={() => setOpen(false)}
+                onOpen={() => setOpen(true)}
+                open={open}
+            >
+
+                <Modal.Content>
+                    <textarea
+                        onChange={e => setComment(e.target.value)}
+                        rows="5"
+                        
+                        // defaultValue={message.message}
+                        >
+
+                    </textarea>
+                </Modal.Content>
+                <Modal.Actions>
+                    <Button color='black' onClick={() => setOpen(false)}>
+                        Cancel
+          </Button>
+                    <Button
+                        content="Save"
+                        labelPosition='right'
+                        icon='checkmark'
+                        onClick={() => {
+                            addComment({ 
+                              comment: comment,
+                            date: Date.now(),
+                            animeId: animeId,
+                            animeName: myAnime?.attributes?.canonicalTitle,
+                            userId: parseInt(localStorage.getItem("loginId"))
+                            })
+                            setOpen(false)
+
+                        }}
+                        positive
+                    />
+                </Modal.Actions>
+            </Modal>
+
     <Card className="centered" color="purple">
       <Image src={myAnime?.attributes?.posterImage.large} />
       <Card.Content>
@@ -98,7 +145,7 @@ export const AnimeDetail = () => {
             size="mini"
             className="AnimeButton"
             onClick={() => {
-              history.push(`/anime/editComment/${animeId}`);
+              setOpen(true)
             }}
           />
           <Button 
@@ -136,7 +183,7 @@ export const AnimeDetail = () => {
           </Button>
         </Button.Group>
       </Card.Content>
-    </Card>
+    </Card></>
   );
 
   return (

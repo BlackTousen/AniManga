@@ -38,6 +38,7 @@ export const UserProvider = (props) => {
       body: JSON.stringify(info)
     })
     .then(res => res.json())
+    
   };
   const deleteAnime = id => {
     return fetch(`http://localhost:8088/lists?animeId=${id}`)

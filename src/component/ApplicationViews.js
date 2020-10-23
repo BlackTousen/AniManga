@@ -36,6 +36,7 @@ export const ApplicationViews = (props) => {
           </Route>
         </UserProvider>
       </AnimeProvider>
+      <CommentProvider>
       <AnimeProvider>
         <UserProvider>
           <Route exact path="/anime/detail/:animeId(\d+)">
@@ -43,6 +44,7 @@ export const ApplicationViews = (props) => {
           </Route>
         </UserProvider>
       </AnimeProvider>
+      </CommentProvider>
 
       {/* Search Starts here */}
       <SearchProvider>
