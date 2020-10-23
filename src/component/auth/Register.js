@@ -1,26 +1,25 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Button, Form,Input } from "semantic-ui-react";
 import { UserContext } from "../users/UserProvider";
 import "./Login.css";
 
 export const Register = (props) => {
-  const firstName = useRef();
-  const lastName = useRef();
-  const username = useRef();
-  const email = useRef();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const conflictDialog = useRef();
   const conflictDialog1 = useRef();
   const history = useHistory();
 
-
-
   const existingUserCheck = () => {
-    return fetch(`http://localhost:8088/users?email=${email.current.value}`)
+    return fetch(`http://localhost:8088/users?email=${email}`)
       .then((res) => res.json())
       .then((user) => !!user.length);
   };
   const usernameCheck = () => {
-    return fetch(`http://localhost:8088/users?username=${username.current.value}`)
+    return fetch(`http://localhost:8088/users?username=${username}`)
       .then((res) => res.json())
       .then((user) => !!user.length);
   };
@@ -40,10 +39,10 @@ export const Register = (props) => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                email: email.current.value,
-                firstName: `${firstName.current.value}`,
-                lastName: `${lastName.current.value}`,
-                username: `${username.current.value}`,
+                email: email,
+                firstName: `${firstName}`,
+                lastName: `${lastName}`,
+                username: `${username}`,
               }),
             })
               .then((_) => _.json())
@@ -62,7 +61,7 @@ export const Register = (props) => {
   };
 
   return (
-    <main style={{ textAlign: "center" }}>
+    <main >
       <dialog className="dialog dialog--password" ref={conflictDialog}>
         <div>Account with that email address already exists</div>
         <button
@@ -82,59 +81,56 @@ export const Register = (props) => {
         </button>
       </dialog>
 
-      <form className="form--login" onSubmit={handleRegister}>
+      <Form className="form--login" onSubmit={handleRegister}>
         <h1 className="h3 mb-3 font-weight-normal">
-          Please Register for NSS Kennels
+          Register for Ani-Manga
         </h1>
-        <fieldset>
-          <label htmlFor="firstName"> First Name </label>
-          <input
-            ref={firstName}
-            type="text"
-            name="firstName"
-            className="form-control"
-            placeholder="First name"
-            required
-            autoFocus
-          />
-        </fieldset>
-        <fieldset>
-          <label htmlFor="lastName"> Last Name </label>
-          <input
-            ref={lastName}
-            type="text"
-            name="lastName"
-            className="form-control"
-            placeholder="Last name"
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <label htmlFor="username"> User Name </label>
-          <input
-            ref={username}
-            type="text"
-            name="username"
-            className="form-control"
-            placeholder="User Name"
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <label htmlFor="inputEmail"> Email address </label>
-          <input
-            ref={email}
-            type="email"
-            name="email"
-            className="form-control"
-            placeholder="Email address"
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <button type="submit"> Sign in </button>
-        </fieldset>
-      </form>
+        <Form.Input 
+                    onChange={(e) => setFirstName(e.target.value)}
+                    type="text"
+                    name="firstName"
+                    className="form-control"
+                    placeholder="First name"
+                    control={Input}
+                    required
+                    autoFocus
+                    label="First Name"
+/>
+<Form.Input 
+                    onChange={(e) => setLastName(e.target.value)}
+                    type="text"
+                    name="LastName"
+                    className="form-control"
+                    placeholder="Last name"
+                    control={Input}
+                    required
+                    autoFocus
+                    label="Last Name"
+/>
+<Form.Input 
+                    onChange={(e) => setUsername(e.target.value)}
+                    type="text"
+                    name="username"
+                    className="form-control"
+                    placeholder="User name"
+                    control={Input}
+                    required
+                    autoFocus
+                    label="User Name"
+/>
+<Form.Input 
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                    name="email"
+                    className="form-control"
+                    placeholder="email@domain.com"
+                    control={Input}
+                    required
+                    autoFocus
+                    label="Email"
+/>
+          <Button type="submit"> Sign in </Button>
+      </Form>
     </main>
   );
 };

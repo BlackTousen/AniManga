@@ -2,7 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { AnimeCard } from "../anime/AnimeCard";
 import { AnimeContext } from "../anime/Provider";
-import { Pagination, Icon } from "semantic-ui-react";
+import { Pagination, Icon, Divider } from "semantic-ui-react";
+import { Card, Button } from "semantic-ui-react";
+
 import "../anime/Anime.css";
 import { SearchContext } from "./SearchProvider";
 
@@ -10,7 +12,7 @@ export const SearchList = () => {
   const { anime, getAnimeByGenre, getAnimeByName, getAnimeByPage } = useContext(
     AnimeContext
   );
-  const { searchTerms, setSearchTerms } = useContext(SearchContext);
+  const { searchTerms, setSearchTerms, searchTermsG } = useContext(SearchContext);
   const [filteredAnime, setAnime] = useState();
   const [offset, setOffset] = useState(0);
   const [page, setPage] = useState(1);
@@ -34,7 +36,11 @@ export const SearchList = () => {
   useEffect(() => {
     if (searchTerms !== "") {
       getAnimeByName(searchTerms, offset).then(setAnime);
-    } else {
+    }
+    else if (searchTermsG !== "") {
+      getAnimeByGenre(searchTermsG,offset).then(setAnime)
+    }
+    else {
       getAnimeByPage(offset).then((res) => {
         setAnime(res);
       });
@@ -50,6 +56,16 @@ export const SearchList = () => {
       setOffset(offset + 1);
     }
   }, [searchTerms]);
+  useEffect(() => {
+    if (searchTermsG !== "") {
+      console.log(searchTermsG)
+      // If the search field is not blank, display matching animals
+      getAnimeByGenre(searchTermsG).then(setAnime);
+    } else {
+      // If the search field is blank, display all animals
+      setOffset(offset + 1);
+    }
+  }, [searchTermsG]);
 
   const nextPage = () => {
     let newPage = page + 1;
@@ -78,49 +94,60 @@ export const SearchList = () => {
 
   return (
     <>
-      <button
+      <Button 
+      floated='left'
+      inverted color="green"
         onClick={() => {
           if (page > 1) {
             previousPage();
           }
         }}
-      >
-        Previous Page
-      </button>
-      <button
+        content="Previous Page"
+      />
+      <Button 
+      floated='right'
+      inverted color="green"
+      float="right"
         onClick={() => {
           nextPage();
         }}
-      >
-        Next Page
-      </button>
-      <h2>Anime!</h2>
+        content="Next Page"
+        />
+      <Divider section hidden />
+      <Divider section hidden />
+      <Divider section inverted/>
+      <h2 className="center">Browse The Library...</h2>
       <div className="animeList">
+        <Card.Group itemsPerRow={2}>
         {filteredAnime?.map((a) => {
           return (
             <>
               <AnimeCard key={a.id} anime={a} />
             </>
           );
-        })}
+        })}</Card.Group>
       </div>
-      <button
+      <Divider section inverted/>
+
+      <Button 
+      floated='left'
+      inverted color="green"
         onClick={() => {
           if (page > 1) {
             previousPage();
           }
         }}
-      >
-        Previous Page
-      </button>
-      <button
+        content="Previous Page"
+      />
+      <Button 
+      floated='right'
+      inverted color="green"
+      float="right"
         onClick={() => {
           nextPage();
         }}
-      >
-        Next Page
-      </button>
-      {/* <Pagination 
+        content="Next Page"
+        />      {/* <Pagination 
                      defaultActivePage={5}
                      ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
                      firstItem={{ content: <Icon name='angle double left' />, icon: true }}

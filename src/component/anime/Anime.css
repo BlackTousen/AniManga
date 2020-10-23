@@ -1,3 +1,56 @@
+/* body {
+  background-color: #700CBC;
+  color: #FDED2A;
+} */
+/* a {
+  color: #FDED2A;
+}
+a:visited {
+  color: #F7F4D4;
+
+} */
+/* a:hover {
+  color: crimson;
+
+} */
+.removeButton {
+  align-self: flex-end;
+  width: 100%;
+}
+.card {
+  width: 290px !important;
+}
+a:hover {
+  color: rgba(128, 255, 0, 0.438) !important;
+}
+a:link {
+  color: chartreuse;
+}
+a:visited {
+  color: rgba(128, 255, 0, 0.438) !important;
+}
+.ui.card>.content>.header, .ui.cards>.card>.content>.header {
+color: chartreuse !important;
+}
+.ui.cards>.purple.card, .ui.purple.card, .ui.purple.cards>.card {
+  background-color: darkslateblue;
+}
+.extra {
+  color: aliceblue !important;
+}
+.ui.card>.content>a.header,
+.ui.cards>.card>.content>a.header,
+.ui.card .meta,
+.ui.cards>.card .meta,
+.ui.card>.content>.description,
+.ui.cards>.card>.content>.description,
+.ui.card>.extra a:not(.ui),
+.ui.cards>.card>.extra a:not(.ui) {
+  color: whitesmoke !important;
+}
+/* .ui.cards>.card {
+  color: white;
+} */
 .animePanel {
     display: flex;
     flex-wrap: wrap;
@@ -7,26 +60,34 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    /* width: 15em; */
   }
     
-.animeCard {
-  width: 15em;
-  flex-basis: 28%;
-  margin: 1em;
-  padding: 1em;
-  border: 1px solid goldenrod;
-  display: flex;
-  flex-direction: column;
-}
+  /* .animeCard {
+    flex-basis: 28%;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid#FDED2A;
+    display: flex;
+    flex-direction: column;
+  }
+  .animeListCard {
+    height: 5em;
+    width: 15em;
+    flex-basis: 28%;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid#FDED2A;
+    display: flex;
+    flex-direction: column;
+  }
 .animeForm {
   width: 40em;
-}
+} */
 .center {
+  text-align: center;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
 }
 .synopsis {
   font-size: 1.5ex;
@@ -36,4 +97,8 @@
 .buttons {
   display: flex;
   justify-content: space-between;
+}
+textarea {
+  resize: none;
+  width: 100%;
 }

@@ -16,7 +16,7 @@ export const AnimeProvider = (props) => {
         return res.data;
       });
   };
-  const getAnimeByGenre = (offset = 0, selection) => {
+  const getAnimeByCategory = (offset = 0, selection) => {
     return fetch(
       `https://kitsu.io/api/edge/anime?page[offset]=${offset}&filter[categories]=${selection}`
     )
@@ -36,13 +36,24 @@ export const AnimeProvider = (props) => {
         return res.data;
       });
   };
+  const getAnimeByGenre = (selection, offset = 0) => {
+    return fetch(
+      `https://kitsu.io/api/edge/anime?page[offset]=${offset}&filter[genres]=${selection}`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setAnime(res.data);
+        return res.data;
+      });
+  };
+  
 
   const getAnimeById = (id = Math.floor(Math.random() * 1200)) => {
     return fetch(`https://kitsu.io/api/edge/anime/${id}`)
       .then((res) => res.json())
       .then((res) => {
         setAnime(res.data);
-        return res.data;
+        return res;
       });
   };
 
@@ -53,7 +64,7 @@ export const AnimeProvider = (props) => {
         getAnimeByPage,
         getAnimeById,
         getAnimeByGenre,
-        getAnimeByName,
+        getAnimeByName, getAnimeByCategory
       }}
     >
       {" "}
