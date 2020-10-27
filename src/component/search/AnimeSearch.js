@@ -4,7 +4,6 @@ import { SearchContext } from "./SearchProvider";
 import "../auth/Login.css"
 import video from "../../video/video4.mp4"
 
-// import "./Animal.css"
 
 export const AnimeSearch = () => {
   const { setSearchTerms, setSearchTermsG } = useContext(SearchContext);
@@ -90,7 +89,6 @@ export const AnimeSearch = () => {
             <Dropdown
               placeholder="Select Genre"
               selection
-              // value={value}
               options={genreOptions}
               onChange={handleChange}
             />

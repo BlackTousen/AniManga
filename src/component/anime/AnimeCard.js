@@ -21,10 +21,6 @@ export const AnimeCard = ({ anime, listed } = false) => {
           {anime?.attributes?.canonicalTitle ?? anime?.attributes?.titles.en ?? anime?.attributes?.abbreviatedTitles[0] ?? anime?.attributes?.canonicalTitle ?? anime?.attributes?.titles.en }
           </Card.Header></h3>
           <Card.Content textAlign="center" extra >{anime?.attributes?.canonicalTitle} - {anime?.attributes?.abbreviatedTitles[0]} - {anime?.attributes?.titles.en} </Card.Content>
-          {/* <section className="animeCard">
-            <h3 className="anime__name center">{anime?.attributes?.canonicalTitle ?? anime?.attributes?.abbreviatedTitles[0] ?? anime?.attributes?.titles.en }</h3>
-            <div></div>
-          </section> */}
         </Link>
         <Card.Content extra><button className="removeButton" hidden={!listed}
         onClick={() => {
@@ -75,10 +71,6 @@ export const AnimeHomeCard = ({ anime }) => (
       <Link to={`/anime/detail/${anime.id}`}>
       <h3><Card.Header className="center">{anime?.attributes?.canonicalTitle ?? anime?.attributes?.abbreviatedTitles[0] ?? anime?.attributes?.titles.en }</Card.Header></h3>
       <Card.Content extra className="center"> {anime?.attributes?.titles.en} - {anime?.attributes?.canonicalTitle} - {anime?.attributes?.abbreviatedTitles[0]} </Card.Content>
-        {/* <section className="animeListCard">
-          <h3 className="anime__name">{anime?.attributes?.canonicalTitle ?? anime?.attributes?.abbreviatedTitles[0] ?? anime?.attributes?.titles.en }</h3>
-          <div></div>
-        </section> */}
       </Link></Card>
     </section>
   );

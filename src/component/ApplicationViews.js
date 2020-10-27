@@ -93,7 +93,6 @@ export const ApplicationViews = (props) => {
         </CommentProvider>
         </AnimeProvider>  
 
-      {/* Render the animal list when http://localhost:3000/animals */}
       {/* <Route exact path="/anime">
             </Route> */}
 

@@ -104,7 +104,6 @@ export const CommentList = () => {
 
       <h2>Comments Section</h2>
       <Container>
-        {/* <Card.Group itemsPerRow={cardAlign(comments)}> */}
         {comments.map((comment) => {
           return (
             <>
@@ -144,7 +143,6 @@ export const CommentList = () => {
             </>
           );
         })}
-        {/* </Card.Group> */}
       </Container>
 
       <video className="videoTag" autoPlay loop muted>

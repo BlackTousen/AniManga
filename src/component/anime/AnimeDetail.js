@@ -33,7 +33,6 @@ export const AnimeDetail = () => {
   }, []);
 
   const constructAnimeObject = (complete = false) => {
-    // setIsLoading(true);
     if (animeId) {
       getList(animeId).then((res) => {
         if (!!res[0] === true) {
@@ -49,7 +48,6 @@ export const AnimeDetail = () => {
           }).then(() => history.push(`/anime/myAnime`));
         }
       });
-      //PUT - update
     }
   };
   const handleAdd = (e) => {
@@ -189,82 +187,4 @@ export const AnimeDetail = () => {
     </>
   );
 
-  return (
-    <section className="animeList">
-      <section className="animeCard">
-        <h3 className="center">
-          {myAnime?.attributes?.canonicalTitle ??
-            myAnime?.attributes?.titles.en}{" "}
-        </h3>
-        <img
-          className="center"
-          src={myAnime?.attributes?.posterImage.tiny}
-          alt={myAnime?.attributes?.titles.en}
-        />
-        <div className="synopsis">
-          {myAnime?.attributes?.subtype} - {myAnime?.attributes?.synopsis}
-        </div>
-        <p></p>
-        <div className="buttons">
-          <button
-            className="AnimeButton"
-            onClick={() => {
-              handleAdd();
-            }}
-          >
-            Start Watching
-          </button>
-          <button
-            className="SearchButton"
-            hidden={false}
-            onClick={() => {
-              handleComplete();
-            }}
-          >
-            Completed
-          </button>
-        </div>
-        <p></p>
-        <div className="buttons">
-          <button
-            className="AnimeButton"
-            onClick={() => {
-              history.push("/anime/myAnime");
-            }}
-          >
-            Add Comment
-          </button>
-          <button
-            className="SearchButton"
-            hidden={false}
-            onClick={() => {
-              // history.push("/anime/Search");
-            }}
-          >
-            View Comments
-          </button>
-        </div>
-        <p></p>
-        <div className="buttons">
-          <button
-            className="AnimeButton"
-            onClick={() => {
-              // history.push("/anime/myAnime");
-            }}
-          >
-            My Anime
-          </button>
-          <button
-            className="SearchButton"
-            hidden={false}
-            onClick={() => {
-              history.push("/anime/Search");
-            }}
-          >
-            Anime Search
-          </button>
-        </div>
-      </section>
-    </section>
-  );
 };

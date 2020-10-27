@@ -26,7 +26,6 @@ export const CommentListById = () => {
   const [commentId, setCommentId] = useState();
 
   function compare(a, b) {
-    // Use toUpperCase() to ignore character casing
     const bandA = a.date;
     const bandB = b.date;
 
@@ -56,9 +55,6 @@ export const CommentListById = () => {
     getCommentsById(animeId);
   }, []);
 
-  //   const handleAnimeNames = list => {
-  //       for (a of list) { getAnimeById(a.animeId).then(setAnimeName) }
-  //   }
 
   comments.sort(compare);
 

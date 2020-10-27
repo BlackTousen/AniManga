@@ -9,7 +9,6 @@ import video from "../../video/video.mp4"
 export const Login = (props) => {
   const [email, setEmail] = useState();
   const [username, setUsername] = useState();
-  // const password = useRef()
   const existDialog = useRef();
   const history = useHistory();
 
