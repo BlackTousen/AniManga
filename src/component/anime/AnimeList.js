@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { AnimeCard } from "./AnimeCard";
 import { AnimeContext } from "./Provider";
+import "../auth/Login.css"
+import video from "../../video/video6.mp4"
 import "./Anime.css";
 import { UserContext } from "../users/UserProvider";
 import { render } from "@testing-library/react";
@@ -45,6 +47,7 @@ export const AnimeList = () => {
       animeRequests.push(animePromise)
     }
     Promise.all(animeRequests).then(_ =>{
+      console.log(x,z)
       setFilteredAnimeW(z);
       setFilteredAnimeC(x);
     })
@@ -124,7 +127,7 @@ export const AnimeList = () => {
   return (
     <>
       <div id="AnimeList"></div>
-      <h2>Currently Watching</h2>
+      <h2 className="text">Currently Watching</h2>
       <div className="animeList">
         <Card.Group itemsPerRow={cardAlign(filteredAnimeW)}>
           {filteredAnimeW?.map((a) => <AnimeCard key={a.id} anime={a} listed={true} />) }
@@ -133,7 +136,7 @@ export const AnimeList = () => {
       <Divider section hidden/>
       <Divider section inverted/>
       <Divider section hidden/>
-      <h2>Completed</h2>
+      <h2 className="text">Completed</h2>
       <div className="animeList">
         <Card.Group itemsPerRow={cardAlign(filteredAnimeC)}>
           {filteredAnimeC?.map((a) => {
@@ -141,6 +144,10 @@ export const AnimeList = () => {
           })}
         </Card.Group>
       </div>
+      <video className="videoTag" autoPlay loop muted>
+          <source src={video} type="video/mp4" />
+        </video>
+
     </>
   );
 };

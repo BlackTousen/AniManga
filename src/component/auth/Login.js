@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Form, Button } from "semantic-ui-react";
 import "./Login.css";
+import video from "../../video/video.mp4"
+
 
 export const Login = (props) => {
   const [email, setEmail] = useState();
@@ -39,7 +41,8 @@ export const Login = (props) => {
   };
 
   return (
-    <main className="container--login">
+    <div>
+        <main className="container--login">
       <dialog className="dialog dialog--auth" ref={existDialog}>
         <div>User does not exist</div>
         <button
@@ -50,10 +53,13 @@ export const Login = (props) => {
         </button>
       </dialog>
 
-      <Form className="form--login" onSubmit={handleLogin}>
-        <h1>Welcome to AniManga!</h1>
-        <h2>Please sign in</h2>
+        <h1 className="text">Welcome to AniManga!</h1>
+        <h2 className="text">Please sign in</h2>
+        <Form 
+      unstackable
+      className="form--login text" onSubmit={handleLogin}>
         <Form.Input
+        width={3}
           onChange={(e) => setUsername(e.target.value)}
           type="text"
           label="Username"
@@ -64,7 +70,8 @@ export const Login = (props) => {
           autoFocus
         />
         <Form.Input
-          onChange={(e) => setEmail(e.target.value)}
+        width={3}
+        onChange={(e) => setEmail(e.target.value)}
           type="email"
           label="Email Address:"
           id="email"
@@ -74,9 +81,14 @@ export const Login = (props) => {
         />
         <Button type="submit">Sign in</Button>
       </Form>
-      <section className="link--register">
+      <section className="link--register text register">
         <Link to="/register">Not a member yet?</Link>
       </section>
+
     </main>
+                    <video className="videoTag" autoPlay loop muted>
+                    <source src={video} type="video/mp4" />
+                </video>
+</div>
   );
 };

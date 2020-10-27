@@ -1,7 +1,9 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./NavBar.css";
-import { Menu, Sticky } from "semantic-ui-react";
+import logo from "../../images/animanga.png"
+
+import { Menu, MenuHeader, Sticky } from "semantic-ui-react";
 
 export const NavBar = (props) => {
   return (

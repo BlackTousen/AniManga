@@ -4,7 +4,6 @@ import { AnimeCard } from "../anime/AnimeCard";
 import { AnimeContext } from "../anime/Provider";
 import { Pagination, Icon, Divider } from "semantic-ui-react";
 import { Card, Button } from "semantic-ui-react";
-
 import "../anime/Anime.css";
 import { SearchContext } from "./SearchProvider";
 
@@ -156,6 +155,7 @@ export const SearchList = () => {
                      nextItem={{ content: <Icon name='angle right' />, icon: true }}
                      totalPages={10}
                     /> */}
+
     </>
   );
 };

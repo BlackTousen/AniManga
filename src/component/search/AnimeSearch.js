@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Dropdown, Menu } from "semantic-ui-react";
 import { SearchContext } from "./SearchProvider";
+import "../auth/Login.css"
+import video from "../../video/video4.mp4"
+
 // import "./Animal.css"
 
 export const AnimeSearch = () => {
@@ -95,6 +98,9 @@ export const AnimeSearch = () => {
         </span>
       </div>
       <p></p>
+      <video className="videoTag" autoPlay loop muted>
+          <source src={video} type="video/mp4" />
+        </video>
     </>
   );
 };

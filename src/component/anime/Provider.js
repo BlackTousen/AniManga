@@ -1,10 +1,11 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { isCompositeComponent } from "react-dom/test-utils";
 
 export const AnimeContext = createContext();
 
 export const AnimeProvider = (props) => {
   const [anime, setAnime] = useState([]);
+
 
   const getAnimeByPage = (offset = 0) => {
     return fetch(
@@ -48,7 +49,7 @@ export const AnimeProvider = (props) => {
   };
   
 
-  const getAnimeById = (id = Math.floor(Math.random() * 1200)) => {
+  const getAnimeById = (id = Math.floor(Math.random() * 14200 + 1)) => {
     return fetch(`https://kitsu.io/api/edge/anime/${id}`)
       .then((res) => res.json())
       .then((res) => {

@@ -2,8 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { AnimeCommentCard, AnimeHomeCard, AnimeSearchCard } from "./AnimeCard";
 import { AnimeContext } from "./Provider";
+import "../auth/Login.css"
+import video from "../../video/video2.mp4"
 import "./Anime.css";
 import { UserContext } from "../users/UserProvider";
+
+
+
 
 export const AnimeHome = () => {
   const { anime, getAnimeById } = useContext(AnimeContext);
@@ -21,19 +26,26 @@ export const AnimeHome = () => {
         let randomChoice = Math.floor(Math.random() * range)
         getAnimeById(x[randomChoice]?.animeId)
       .then(res => { 
-        setAnime1(res.data) 
+        if (res.status === "404") { getRandomAnime(1) }
+        else { setAnime1(res.data) }
       });
     });
     getRandomAnime()
   }, []);
 
-  const getRandomAnime = () => {
-    let range = 1500
+  const getRandomAnime = (x = 0) => {
+    let range = 14200
     let randomChoice = Math.floor(Math.random() * range)
     getAnimeById(randomChoice)
     .then(res => {
-      if (res.status === "404") { getRandomAnime() }
-     else { setAnime(res.data) }
+      if (res.status === "404") { 
+       if (x === 0) { getRandomAnime()  }
+       else if (x === 1) { getRandomAnime(1) }
+      }
+     else { 
+       if (x === 0) { setAnime(res.data)  }
+       else if (x === 1) { setAnime1 (res.data) }
+      }
     })
     
 
@@ -55,6 +67,10 @@ export const AnimeHome = () => {
           <AnimeSearchCard key={filteredAnime1?.id} anime={filteredAnime1} />
       </div>
       </div>
+
+      <video className="videoTag" autoPlay loop muted>
+          <source src={video} type="video/mp4" />
+        </video>
     </>
   );
 };

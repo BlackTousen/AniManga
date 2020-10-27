@@ -1,0 +1,22 @@
+.card {
+    width: 290px;
+}
+
+.text {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.register {
+  margin-top: 20px;
+}
+
+.animePanel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .animeList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }

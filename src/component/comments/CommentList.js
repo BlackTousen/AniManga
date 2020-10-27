@@ -10,6 +10,9 @@ import {
 } from "semantic-ui-react";
 import { AnimeContext } from "../anime/Provider";
 import { CommentContext } from "./CommentProvider";
+import "../auth/Login.css"
+import video from "../../video/video3.mp4"
+
 
 export const CommentList = () => {
   const { comments, deleteComment, getComments, editComment } = useContext(
@@ -143,6 +146,11 @@ export const CommentList = () => {
         })}
         {/* </Card.Group> */}
       </Container>
+
+      <video className="videoTag" autoPlay loop muted>
+          <source src={video} type="video/mp4" />
+        </video>
+
     </>
   );
 };

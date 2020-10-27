@@ -13,8 +13,25 @@ import { CommentProvider } from "./comments/CommentProvider";
 import { CommentList } from "./comments/CommentList";
 import { CommentListById } from "./comments/CommentListById";
 // import { Home } from "./Home"
+import "./auth/Login.css"
+import video from "../video/video3.mp4"
+
+// import video2 from "../video/video2.mp4"
+// import video3 from "../video/video3.mp4"
+// import video4 from "../video/video4.mp4"
+// import video5 from "../video/video5.mp4"
+// import video6 from "../video/video6.mp4"
+
 
 export const ApplicationViews = (props) => {
+
+  const randomVideo = () => {
+    let result = "video" + Math.floor(Math.random() * 0) + 1
+    console.log(result)
+    return result
+  }
+
+
   return (
     <>
       {/* User Anime Pages */}
@@ -69,6 +86,9 @@ export const ApplicationViews = (props) => {
       <CommentProvider>
             <Route exact path="/anime/comments/:animeId(\d+)">
               <CommentListById />
+              <video className="videoTag" autoPlay loop muted>
+          <source src={video} type="video/mp4" />
+        </video>
             </Route>
         </CommentProvider>
         </AnimeProvider>  
@@ -76,6 +96,7 @@ export const ApplicationViews = (props) => {
       {/* Render the animal list when http://localhost:3000/animals */}
       {/* <Route exact path="/anime">
             </Route> */}
+
     </>
   );
 };
