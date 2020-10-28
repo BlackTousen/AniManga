@@ -23,10 +23,10 @@ export const AnimeHome = () => {
     getWatchingList().then((res) => {
         let x = res.filter(list => list.completed === false)
         let range = x.length
-        let randomChoice = Math.floor(Math.random() * range)
+        let randomChoice = Math.floor(Math.random() * range + 1)
         getAnimeById(x[randomChoice]?.animeId)
-      .then(res => { 
-        if (res.status === "404") { getRandomAnime(1) }
+        .then(res => { 
+        if (res?.status === "404") { getRandomAnime(1) }
         else { setAnime1(res.data) }
       });
     });
@@ -35,17 +35,11 @@ export const AnimeHome = () => {
 
   const getRandomAnime = (x = 0) => {
     let range = 14200
-    let randomChoice = Math.floor(Math.random() * range)
+    let randomChoice = Math.floor(Math.random() * range + 1)
     getAnimeById(randomChoice)
     .then(res => {
-      if (res.status === "404") { 
-       if (x === 0) { getRandomAnime()  }
-       else if (x === 1) { getRandomAnime(1) }
-      }
-     else { 
        if (x === 0) { setAnime(res.data)  }
        else if (x === 1) { setAnime1 (res.data) }
-      }
     })
     
 
@@ -58,13 +52,13 @@ export const AnimeHome = () => {
     <>
       <div className="animePanel">
         <div className="animeList">
-          <AnimeHomeCard key={filteredAnime?.id} anime={filteredAnime} />
+          <AnimeHomeCard key={filteredAnime.id} anime={filteredAnime} />
       </div>
       <div className="animeList">
           <AnimeCommentCard />
       </div>
       <div className="animeList">
-          <AnimeSearchCard key={filteredAnime1?.id} anime={filteredAnime1} />
+          <AnimeSearchCard key={filteredAnime1.id} anime={filteredAnime1} />
       </div>
       </div>
 

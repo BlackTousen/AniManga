@@ -13,6 +13,10 @@ a:visited {
   color: crimson;
 
 } */
+.noteCard {
+  max-height: 44em;
+  overflow: auto;
+}
 
 .backgroundImage {
   position: fixed;

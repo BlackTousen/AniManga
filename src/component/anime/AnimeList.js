@@ -39,7 +39,6 @@ export const AnimeList = () => {
       animeRequests.push(animePromise)
     }
     Promise.all(animeRequests).then(_ =>{
-      console.log(x,z)
       setFilteredAnimeW(z);
       setFilteredAnimeC(x);
     })

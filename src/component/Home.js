@@ -60,12 +60,12 @@ export const Home = () => {
               <Card.Content extra> For your Anime needs</Card.Content>
             </Card>
           </Link>
-          {/* <Link to="/manga">
+          <Link to="/manga">
             <Card color="purple" className="center">
               Manga
               <Card.Content extra> For your Manga needs</Card.Content>
             </Card>
-          </Link> */}
+          </Link>
         </div>
               </div>
               <video className="videoTag" autoPlay loop muted>

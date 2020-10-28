@@ -6,6 +6,12 @@ export const AnimeContext = createContext();
 export const AnimeProvider = (props) => {
   const [anime, setAnime] = useState([]);
 
+  function handleErrors(response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
+}
 
   const getAnimeByPage = (offset = 0) => {
     return fetch(
@@ -47,15 +53,19 @@ export const AnimeProvider = (props) => {
         return res.data;
       });
   };
-  
 
   const getAnimeById = (id = Math.floor(Math.random() * 14200 + 1)) => {
     return fetch(`https://kitsu.io/api/edge/anime/${id}`)
+      .then(handleErrors)
       .then((res) => res.json())
       .then((res) => {
         setAnime(res.data);
         return res;
-      });
+      })
+      .catch(e => {
+        return getAnimeById()
+      })
+;
   };
 
   return (
@@ -65,7 +75,8 @@ export const AnimeProvider = (props) => {
         getAnimeByPage,
         getAnimeById,
         getAnimeByGenre,
-        getAnimeByName, getAnimeByCategory
+        getAnimeByName,
+        getAnimeByCategory,
       }}
     >
       {" "}

@@ -20,6 +20,11 @@ export const NavBar = (props) => {
                 as={NavLink} to="/anime">
           Anime
         </Menu.Item>
+        <Menu.Item
+                color="purple"
+                as={NavLink} to="/manga">
+          Manga
+        </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item
             as={NavLink}

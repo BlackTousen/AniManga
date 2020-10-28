@@ -55,7 +55,6 @@ export const SearchList = () => {
   }, [searchTerms]);
   useEffect(() => {
     if (searchTermsG !== "") {
-      console.log(searchTermsG)
       getAnimeByGenre(searchTermsG).then(setAnime);
     } else {
       setOffset(offset + 1);

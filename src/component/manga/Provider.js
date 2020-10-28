@@ -1,27 +1,86 @@
-import React, {useState, createContext } from "react"
+import React, { useState, createContext, useEffect } from "react";
+import { isCompositeComponent } from "react-dom/test-utils";
 
-export const MangaContext = createContext()
+export const MangaContext = createContext();
 
-export const MangaProvider = props => {
-    const [manga, setManga] = useState()
+export const MangaProvider = (props) => {
+  const [manga, setManga] = useState([]);
 
-    const getManga = (offset = 0) => {
-        return fetch(`https://kitsu.io/api/edge/manga?page[offset]=${offset}`)
-        .then(res => res.json())
-        .then(setManga)
+  function handleErrors(response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
     }
-
-    const getMangaById = id => {
-        return fetch(`https://kitsu.io/api/edge/manga/${id}`)
-        .then(res => res.json())
-        .then(setManga)
-    }
-
-    return (
-        <MangaContext.Provider value={{
-            manga, getManga, getMangaById
-        }}> {props.children}
-        </MangaContext.Provider>
-    )
-
+    return response;
 }
+
+  const getMangaByPage = (offset = 0) => {
+    return fetch(
+      `https://kitsu.io/api/edge/manga?page[offset]=${offset}&sort=slug`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setManga(res.data);
+        return res.data;
+      });
+  };
+  const getMangaByCategory = (offset = 0, selection) => {
+    return fetch(
+      `https://kitsu.io/api/edge/manga?page[offset]=${offset}&filter[categories]=${selection}`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setManga(res.data);
+        return res.data;
+      });
+  };
+  const getMangaByName = (selection, offset = 0) => {
+    return fetch(
+      `https://kitsu.io/api/edge/manga?page[offset]=${offset}&filter[text]=${selection}`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setManga(res.data);
+        return res.data;
+      });
+  };
+  const getMangaByGenre = (selection, offset = 0) => {
+    return fetch(
+      `https://kitsu.io/api/edge/manga?page[offset]=${offset}&filter[genres]=${selection}`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setManga(res.data);
+        return res.data;
+      });
+  };
+
+  const getMangaById = (id = Math.floor(Math.random() * 14200 + 1)) => {
+    return fetch(`https://kitsu.io/api/edge/manga/${id}`)
+      .then(handleErrors)
+      .then((res) => res.json())
+      .then((res) => {
+        setManga(res.data);
+        return res;
+      })
+      .catch(e => {
+        return getMangaById()
+      })
+;
+  };
+
+  return (
+    <MangaContext.Provider
+      value={{
+        manga,
+        getMangaByPage,
+        getMangaById,
+        getMangaByGenre,
+        getMangaByName,
+        getMangaByCategory,
+      }}
+    >
+      {" "}
+      {props.children}
+    </MangaContext.Provider>
+  );
+};

@@ -1,0 +1,122 @@
+/* body {
+  background-color: #700CBC;
+  color: #FDED2A;
+} */
+/* a {
+  color: #FDED2A;
+}
+a:visited {
+  color: #F7F4D4;
+
+} */
+/* a:hover {
+  color: crimson;
+
+} */
+.noteCard {
+    max-height: 44em;
+    overflow: auto;
+  }
+  
+  .backgroundImage {
+    position: fixed;
+    left: 0;
+    top: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    /* width: 100%; */
+    /* height: 100%; */
+    /* max-width: 100vw;
+    max-height: 100vh; */
+    opacity: .25;
+    z-index: -1;
+  }
+  .removeButton {
+    align-self: flex-end;
+    width: 100%;
+  }
+  .card {
+    width: 290px !important;
+  }
+  a:hover {
+    color: rgba(128, 255, 0, 0.438) !important;
+  }
+  a:link {
+    color: chartreuse;
+  }
+  a:visited {
+    color: rgba(128, 255, 0, 0.438) !important;
+  }
+  .ui.card>.content>.header, .ui.cards>.card>.content>.header {
+  color: rgba(128, 255, 0, 0.438) !important;
+  }
+  .ui.cards>.purple.card, .ui.purple.card, .ui.purple.cards>.card {
+    background-color: darkslateblue;
+  }
+  .extra {
+    color: aliceblue !important;
+  }
+  .ui.card>.content>a.header,
+  .ui.cards>.card>.content>a.header,
+  .ui.card .meta,
+  .ui.cards>.card .meta,
+  .ui.card>.content>.description,
+  .ui.cards>.card>.content>.description,
+  .ui.card>.extra a:not(.ui),
+  .ui.cards>.card>.extra a:not(.ui) {
+    color: whitesmoke !important;
+  }
+  /* .ui.cards>.card {
+    color: white;
+  } */
+  .mangaPanel {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    .mangaList {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+      
+    /* .mangaCard {
+      flex-basis: 28%;
+      margin: 1em;
+      padding: 1em;
+      border: 1px solid#FDED2A;
+      display: flex;
+      flex-direction: column;
+    }
+    .mangaListCard {
+      height: 5em;
+      width: 15em;
+      flex-basis: 28%;
+      margin: 1em;
+      padding: 1em;
+      border: 1px solid#FDED2A;
+      display: flex;
+      flex-direction: column;
+    }
+  .mangaForm {
+    width: 40em;
+  } */
+  .center {
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .synopsis {
+    font-size: 1.5ex;
+    overflow: auto;
+    max-height: 8em;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  textarea {
+    resize: none;
+    width: 100%;
+  }

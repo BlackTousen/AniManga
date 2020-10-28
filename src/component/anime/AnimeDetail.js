@@ -9,17 +9,31 @@ import { CommentContext } from "../comments/CommentProvider";
 export const AnimeDetail = () => {
   const { anime, getAnimeById } = useContext(AnimeContext);
   const { addComment } = useContext(CommentContext);
-  const { createList, getWatchingList, getList, addToList } = useContext(
-    UserContext
-  );
+  const {
+    createList,
+    getWatchingList,
+    getList,
+    addToList,
+    addPersonalNote,
+    getPersonalNotes,
+  } = useContext(UserContext);
   const [myAnime, setMyAnime] = useState({});
+  const [notes, setNotes] = useState([]);
   const [open, setOpen] = useState(false);
   const [comment, setComment] = useState("");
+  const [time, setTime] = useState("");
+  const [personalComment, setPersonalComment] = useState("");
   const [watchingList, setWatchingList] = useState([]);
   const history = useHistory();
   const { animeId } = useParams();
+  const [value, setValue] = useState({});
 
+  const handleChange = (e, { value }) => {
+    setValue({ value });
+    setPersonalComment(value);
+  };
   useEffect(() => {
+    getPersonalNotes(animeId).then(setNotes);
     getWatchingList().then((x) => {
       let found = x.find(
         (list) =>
@@ -32,16 +46,36 @@ export const AnimeDetail = () => {
     });
   }, []);
 
+  useEffect(() => {
+  getPersonalNotes(animeId)
+  },[notes])
+
+  function compare(a, b) {
+    // Use toUpperCase() to ignore character casing
+    const bandA = a.date;
+    const bandB = b.date;
+
+    let comparison = 0;
+    if (bandA > bandB) {
+      comparison = 1;
+    } else if (bandA < bandB) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
   const constructAnimeObject = (complete = false) => {
     if (animeId) {
       getList(animeId).then((res) => {
         if (!!res[0] === true) {
           addToList(res[0].id, {
+            type: "anime",
             completed: complete,
             userId: parseInt(localStorage.getItem("loginId")),
           }).then(() => history.push(`/anime/myAnime`));
         } else {
           createList({
+          type: "anime",
             animeId: animeId,
             completed: complete,
             userId: parseInt(localStorage.getItem("loginId")),
@@ -55,6 +89,16 @@ export const AnimeDetail = () => {
   };
   const handleComplete = (e) => {
     constructAnimeObject(true);
+  };
+  const handleAddComment = (e) => {
+    addPersonalNote({
+      comment: personalComment,
+      date: Date.now(),
+      animeId: animeId,
+      userId: parseInt(localStorage.getItem("loginId")),
+    });
+    document.getElementById("personalNote").value = "";
+    getPersonalNotes(animeId).then(setNotes)
   };
 
   return (
@@ -176,15 +220,29 @@ export const AnimeDetail = () => {
             </Card.Content>
           </Card>
 
-          <Card color="purple">
-            {console.log(watchingList)}
+          <Card color="purple" >
+            <Card.Content className="noteCard">
+              {notes.map((note) => {
+                return <p>{note.comment}</p>;
+              })}
+            </Card.Content>
             <Card.Content extra>
-              <Input type="text" label="Note:" placeholder="Viewing on Netflix" />
+              <div>
+                <span>
+                  <Input
+                    id="personalNote"
+                    type="text"
+                    label="Note:"
+                    placeholder="Viewing on Netflix"
+                    onChange={handleChange}
+                  />{" "}
+                  <Button content="Note" onClick={handleAddComment} />
+                </span>
+              </div>
             </Card.Content>
           </Card>
         </Card.Group>
       </div>
     </>
   );
-
 };
