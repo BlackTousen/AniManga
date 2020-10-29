@@ -23,7 +23,7 @@ export const MangaHome = () => {
     getMangaList().then((res) => {
         let x = res.filter(list => list.completed === false)
         let range = x.length
-        let randomChoice = Math.floor(Math.random() * range + 1)
+        let randomChoice = Math.floor(Math.random() * range )
         getMangaById(x[randomChoice]?.mangaId)
         .then(res => { 
         if (res?.status === "404") { getRandomManga(1) }

@@ -37,7 +37,7 @@ export const AnimeCommentCard = ({ anime }) => {
   return (
     <section>
                 <Link to="/anime/comments">
-          <h2 className="center">Comments</h2>
+                <h2 className="center">Comments</h2>
         </Link><Card  color="purple">
         <section className="animeCard">
           <h3 className="anime__name">Browse Comments, get recommendations</h3>

@@ -23,7 +23,7 @@ export const AnimeHome = () => {
     getWatchingList().then((res) => {
         let x = res.filter(list => list.completed === false)
         let range = x.length
-        let randomChoice = Math.floor(Math.random() * range + 1)
+        let randomChoice = Math.floor(Math.random() * range)
         getAnimeById(x[randomChoice]?.animeId)
         .then(res => { 
         if (res?.status === "404") { getRandomAnime(1) }

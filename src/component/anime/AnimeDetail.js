@@ -7,7 +7,7 @@ import { Card, Image, Button, Modal, Input } from "semantic-ui-react";
 import { CommentContext } from "../comments/CommentProvider";
 
 export const AnimeDetail = () => {
-  const { anime, getAnimeById } = useContext(AnimeContext);
+  const { anime, getAnimeById, animeCheck } = useContext(AnimeContext);
   const { addComment } = useContext(CommentContext);
   const {
     createList,
@@ -21,7 +21,7 @@ export const AnimeDetail = () => {
   const [notes, setNotes] = useState([]);
   const [open, setOpen] = useState(false);
   const [comment, setComment] = useState("");
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState({});
   const [personalComment, setPersonalComment] = useState("");
   const [watchingList, setWatchingList] = useState([]);
   const history = useHistory();
@@ -33,6 +33,7 @@ export const AnimeDetail = () => {
     setPersonalComment(value);
   };
   useEffect(() => {
+    animeCheck(animeId).then(setTime)
     getPersonalNotes(animeId).then(setNotes);
     getWatchingList().then((x) => {
       let found = x.find(
@@ -219,8 +220,7 @@ export const AnimeDetail = () => {
               </Button.Group>
             </Card.Content>
           </Card>
-
-          <Card color="purple" >
+                  {time[0] ?           <Card color="purple" >
             <Card.Content className="noteCard">
               {notes.map((note) => {
                 return <p>{note.comment}</p>;
@@ -241,6 +241,7 @@ export const AnimeDetail = () => {
               </div>
             </Card.Content>
           </Card>
+ : ""}
         </Card.Group>
       </div>
     </>

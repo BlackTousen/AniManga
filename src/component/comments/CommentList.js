@@ -70,6 +70,7 @@ export const CommentList = () => {
 
   return (
     <>
+    <div className="text">
       <Modal
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
@@ -109,7 +110,7 @@ export const CommentList = () => {
             <>
               <Card key={`Comment ${comment.animeId}`} color="purple">
                 <Link to={`/anime/detail/${comment.animeId}`}>
-                  <Card.Header> {comment.animeName} </Card.Header>{" "}
+                  <Card.Header textAlign="center"> {comment.animeName} </Card.Header>{" "}
                 </Link>
                 <Card.Description content={comment.comment} />
                 <Card.Content
@@ -144,11 +145,11 @@ export const CommentList = () => {
           );
         })}
       </Container>
+      </div>
 
       <video className="videoTag" autoPlay loop muted>
           <source src={video} type="video/mp4" />
         </video>
-
     </>
   );
 };

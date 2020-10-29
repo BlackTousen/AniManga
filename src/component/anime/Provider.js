@@ -12,7 +12,11 @@ export const AnimeProvider = (props) => {
     }
     return response;
 }
+  const animeCheck = id => {
+    return fetch(`http://localhost:8088/lists?_expand=user&userId=${localStorage.getItem("loginId")}&animeId=${id}`)
+    .then(res => res.json())
 
+  }
   const getAnimeByPage = (offset = 0) => {
     return fetch(
       `https://kitsu.io/api/edge/anime?page[offset]=${offset}&sort=slug`
@@ -77,6 +81,7 @@ export const AnimeProvider = (props) => {
         getAnimeByGenre,
         getAnimeByName,
         getAnimeByCategory,
+        animeCheck
       }}
     >
       {" "}
