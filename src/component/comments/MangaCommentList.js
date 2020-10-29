@@ -9,18 +9,18 @@ import {
   Modal,
   Feed,
 } from "semantic-ui-react";
-import { AnimeContext } from "../anime/Provider";
+import { MangaContext } from "../manga/Provider";
 import { CommentContext } from "./CommentProvider";
 import "../auth/Login.css"
 import video from "../../video/video3.mp4"
 
 
-export const CommentList = () => {
+export const MangaCommentList = () => {
   const { comments, deleteComment, getComments, editComment } = useContext(
     CommentContext
   );
-  const { getAnimeById } = useContext(AnimeContext);
-  const [animeName, setAnimeName] = useState("");
+  const { getMangaById } = useContext(MangaContext);
+  const [mangaName, setMangaName] = useState("");
   const [open, setOpen] = useState(false);
   const [commentInfo, setComment] = useState("");
   const [commentId, setCommentId] = useState();
@@ -56,11 +56,12 @@ export const CommentList = () => {
     getComments();
   }, []);
 
-  //   const handleAnimeNames = list => {
-  //       for (a of list) { getAnimeById(a.animeId).then(setAnimeName) }
+  //   const handleMangaNames = list => {
+  //       for (a of list) { getMangaById(a.mangaId).then(setMangaName) }
   //   }
 
   comments.sort(compare);
+
   const owned = (comment) => {
     if (parseInt(localStorage.getItem("loginId")) === comment.userId) {
       return true;
@@ -107,12 +108,12 @@ export const CommentList = () => {
       <h2>Comments Section</h2>
       <Container>
         <Feed>
-        {comments.filter(comment => comment.animeName).map((comment) => {
+        {comments.filter(comment => comment.mangaName).map((comment) => {
           return (
             <>
-              <Card key={`Comment ${comment.animeId}`} color="purple">
-                <Link to={`/anime/detail/${comment.animeId}`}>
-                  <Card.Header textAlign="center"> {comment.animeName} </Card.Header>{" "}
+              <Card key={`Comment ${comment.mangaId}`} color="purple">
+                <Link to={`/manga/detail/${comment.mangaId}`}>
+                  <Card.Header textAlign="center"> {comment.mangaName} </Card.Header>{" "}
                 </Link>
                 <Card.Description content={comment.comment} />
                 <Card.Content

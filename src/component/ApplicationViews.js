@@ -13,6 +13,7 @@ import { AnimeSearch } from "./search/AnimeSearch";
 import { MangaSearch } from "./search/MangaSearch";
 import { CommentProvider } from "./comments/CommentProvider";
 import { CommentList } from "./comments/CommentList";
+import { MangaCommentList } from "./comments/MangaCommentList";
 import { CommentListById } from "./comments/CommentListById";
 // import { Home } from "./Home"
 import "./auth/Login.css"
@@ -142,7 +143,7 @@ export const ApplicationViews = (props) => {
 <MangaProvider>
       <CommentProvider>
             <Route exact path="/manga/comments">
-              <CommentList />
+              <MangaCommentList />
             </Route>
         </CommentProvider>
         </MangaProvider>  

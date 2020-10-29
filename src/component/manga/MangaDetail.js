@@ -7,7 +7,7 @@ import { Card, Image, Button, Modal, Input } from "semantic-ui-react";
 import { CommentContext } from "../comments/CommentProvider";
 
 export const MangaDetail = () => {
-  const { manga, getMangaById } = useContext(MangaContext);
+  const { manga, getMangaById, mangaCheck } = useContext(MangaContext);
   const { addComment } = useContext(CommentContext);
   const {
     createList,
@@ -33,6 +33,7 @@ export const MangaDetail = () => {
     setPersonalComment(value);
   };
   useEffect(() => {
+    mangaCheck(mangaId).then(setTime)
     getPersonalNotes(mangaId).then(setNotes);
     getMangaList().then((x) => {
       let found = x.find(
@@ -219,8 +220,7 @@ export const MangaDetail = () => {
               </Button.Group>
             </Card.Content>
           </Card>
-
-          <Card color="purple" >
+                  {time[0] ?           <Card color="purple" >
             <Card.Content className="noteCard">
               {notes.map((note) => {
                 return <p>{note.comment}</p>;
@@ -241,6 +241,7 @@ export const MangaDetail = () => {
               </div>
             </Card.Content>
           </Card>
+: ""}
         </Card.Group>
       </div>
     </>

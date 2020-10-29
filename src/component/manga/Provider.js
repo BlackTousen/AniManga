@@ -12,6 +12,11 @@ export const MangaProvider = (props) => {
     }
     return response;
 }
+const mangaCheck = id => {
+  return fetch(`http://localhost:8088/lists?_expand=user&userId=${localStorage.getItem("loginId")}&mangaId=${id}`)
+  .then(res => res.json())
+
+}
 
   const getMangaByPage = (offset = 0) => {
     return fetch(
@@ -77,6 +82,7 @@ export const MangaProvider = (props) => {
         getMangaByGenre,
         getMangaByName,
         getMangaByCategory,
+        mangaCheck
       }}
     >
       {" "}
