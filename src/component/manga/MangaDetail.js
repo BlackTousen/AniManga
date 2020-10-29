@@ -12,7 +12,7 @@ export const MangaDetail = () => {
   const {
     createList,
     getMangaList,
-    getList,
+    getMangaList2,
     addToList,
     addPersonalNote,
     getPersonalNotes,
@@ -67,7 +67,7 @@ export const MangaDetail = () => {
 
   const constructMangaObject = (complete = false) => {
     if (mangaId) {
-      getList(mangaId).then((res) => {
+      getMangaList2(mangaId).then((res) => {
         if (!!res[0] === true) {
           addToList(res[0].id, {
             type: "manga",
@@ -160,7 +160,7 @@ export const MangaDetail = () => {
                     handleAdd();
                   }}
                 >
-                  Start Watching
+                  Start Reading
                 </Button>
                 <Button
                   positive

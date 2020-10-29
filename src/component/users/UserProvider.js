@@ -52,6 +52,10 @@ const getPersonalNotes = (x) => {
     return fetch(`http://localhost:8088/lists?_expand=user&userId=${localStorage.getItem("loginId")}&animeId=${x}`)
     .then(res => res.json())
   };
+  const getMangaList2 = (x) => {
+    return fetch(`http://localhost:8088/lists?_expand=user&userId=${localStorage.getItem("loginId")}&mangaId=${x}`)
+    .then(res => res.json())
+  };
   const PatchAnime = (x,info) => {
     return fetch(`http://localhost:8088/lists/${x}`, {
       method: "PATCH",
@@ -63,6 +67,16 @@ const getPersonalNotes = (x) => {
   };
   const deleteAnime = id => {
     return fetch(`http://localhost:8088/lists?animeId=${id}`)
+    .then(res => res.json())
+    .then(res => {
+      return fetch(`http://localhost:8088/lists/${res[0].id}`, {
+        method: "DELETE"
+      })
+    })
+    
+  }
+  const deleteManga = id => {
+    return fetch(`http://localhost:8088/lists?mangaId=${id}`)
     .then(res => res.json())
     .then(res => {
       return fetch(`http://localhost:8088/lists/${res[0].id}`, {
@@ -96,7 +110,8 @@ const getPersonalNotes = (x) => {
         getUsers,
         getUserById, getList, PatchAnime,
         addToList, getWatchingList, createList, deleteAnime,
-        addPersonalNote, getPersonalNotes, getMangaList
+        addPersonalNote, getPersonalNotes, getMangaList, deleteManga,
+        getMangaList2
       }}
     >
       {" "}
