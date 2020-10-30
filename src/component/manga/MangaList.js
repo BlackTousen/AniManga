@@ -64,6 +64,7 @@ export const MangaList = () => {
 
   return (
     <><div className="main">
+      <div className="text">
       <div id="MangaList"></div>
       <h2 className="text">Currently Watching</h2>
       <div className="mangaList">
@@ -85,6 +86,7 @@ export const MangaList = () => {
       <video className="videoTag" autoPlay loop muted>
           <source src={video} type="video/mp4" />
         </video>
+        </div>
         </div>
 
     </>

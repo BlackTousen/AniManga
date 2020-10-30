@@ -50,6 +50,8 @@ export const AnimeHome = () => {
 
   return (
     <><div className="main">
+      <div className="text">
+
       <div className="animePanel">
         <div className="animeList">
           <AnimeHomeCard key={filteredAnime.id} anime={filteredAnime} />
@@ -65,6 +67,7 @@ export const AnimeHome = () => {
           <source src={video} type="video/mp4" />
         </video>
         </div>
+      </div>
     </>
   );
 };

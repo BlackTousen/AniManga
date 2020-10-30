@@ -104,11 +104,13 @@ export const AnimeDetail = () => {
 
   return (
     <>
+    <div className="text">
+
       <Modal
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
-      >
+        >
         <Modal.Content>
           <textarea
             onChange={(e) => setComment(e.target.value)}
@@ -134,7 +136,7 @@ export const AnimeDetail = () => {
               setOpen(false);
             }}
             positive
-          />
+            />
         </Modal.Actions>
       </Modal>
       <div className="animePanel">
@@ -159,7 +161,7 @@ export const AnimeDetail = () => {
                   onClick={() => {
                     handleAdd();
                   }}
-                >
+                  >
                   Start Watching
                 </Button>
                 <Button
@@ -193,7 +195,7 @@ export const AnimeDetail = () => {
                   onClick={() => {
                     history.push(`/anime/comments/${animeId}`);
                   }}
-                />
+                  />
               </Button.Group>
               <p></p>
               <Button.Group widths={2}>
@@ -214,7 +216,7 @@ export const AnimeDetail = () => {
                   onClick={() => {
                     history.push("/anime/Search");
                   }}
-                >
+                  >
                   Anime Search
                 </Button>
               </Button.Group>
@@ -244,6 +246,7 @@ export const AnimeDetail = () => {
  : ""}
         </Card.Group>
       </div>
+                    </div>
     </>
   );
 };

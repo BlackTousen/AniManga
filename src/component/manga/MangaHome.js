@@ -50,6 +50,7 @@ export const MangaHome = () => {
 
   return (
     <><div className="main">
+      <div className="text">
       <div className="mangaPanel">
         <div className="mangaList">
           <MangaHomeCard key={filteredManga.id} manga={filteredManga} />
@@ -65,6 +66,7 @@ export const MangaHome = () => {
       <video className="videoTag" autoPlay loop muted>
           <source src={video} type="video/mp4" />
         </video>
+        </div>
         </div>
     </>
   );

@@ -104,6 +104,7 @@ export const MangaDetail = () => {
 
   return (
     <>
+    <div className="text">
       <Modal
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
@@ -243,6 +244,7 @@ export const MangaDetail = () => {
           </Card>
 : ""}
         </Card.Group>
+      </div>
       </div>
     </>
   );

@@ -68,6 +68,7 @@ export const CommentListById = () => {
 
   return (
     <>
+    <div className="text">
       <Modal
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
@@ -140,6 +141,7 @@ export const CommentListById = () => {
             );
           })}
       </Container>
+      </div>
     </>
   );
 };

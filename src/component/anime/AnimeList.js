@@ -65,8 +65,9 @@ export const AnimeList = () => {
   return (
     <>
     <div className="main">
+      <div className="text">
       <div id="AnimeList"></div>
-      <h2 className="text">Currently Watching</h2>
+      <h2>Currently Watching</h2>
       <div className="animeList">
         <Card.Group itemsPerRow={cardAlign(filteredAnimeW)}>
           {filteredAnimeW?.map((a) => <AnimeCard key={a.id} anime={a} listed={true} />) }
@@ -87,7 +88,7 @@ export const AnimeList = () => {
           <source src={video} type="video/mp4" />
         </video>
         </div>
-
+        </div>
     </>
   );
 };
