@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { Button, Form,Input } from "semantic-ui-react";
 import { UserContext } from "../users/UserProvider";
 import "./Login.css";
+import video from "../../video/register.mp4"
+
 
 export const Register = (props) => {
   const [firstName, setFirstName] = useState("");
@@ -61,7 +63,8 @@ export const Register = (props) => {
   };
 
   return (
-    <main >
+<div className="main">
+<main >
       <dialog className="dialog dialog--password" ref={conflictDialog}>
         <div>Account with that email address already exists</div>
         <button
@@ -72,7 +75,7 @@ export const Register = (props) => {
         </button>
       </dialog>
       <dialog className="dialog dialog--password" ref={conflictDialog1}>
-        <div>Account with that email address already exists</div>
+        <div>Account with that username already exists</div>
         <button
           className="button--close"
           onClick={(e) => conflictDialog1.current.close()}
@@ -86,6 +89,7 @@ export const Register = (props) => {
           Register for Ani-Manga
         </h1>
         <Form.Input 
+        width={3}
                     onChange={(e) => setFirstName(e.target.value)}
                     type="text"
                     name="firstName"
@@ -97,7 +101,8 @@ export const Register = (props) => {
                     label="First Name"
 />
 <Form.Input 
-                    onChange={(e) => setLastName(e.target.value)}
+        width={3}
+        onChange={(e) => setLastName(e.target.value)}
                     type="text"
                     name="LastName"
                     className="form-control"
@@ -108,7 +113,8 @@ export const Register = (props) => {
                     label="Last Name"
 />
 <Form.Input 
-                    onChange={(e) => setUsername(e.target.value)}
+        width={3}
+        onChange={(e) => setUsername(e.target.value)}
                     type="text"
                     name="username"
                     className="form-control"
@@ -119,7 +125,8 @@ export const Register = (props) => {
                     label="User Name"
 />
 <Form.Input 
-                    onChange={(e) => setEmail(e.target.value)}
+        width={3}
+        onChange={(e) => setEmail(e.target.value)}
                     type="email"
                     name="email"
                     className="form-control"
@@ -129,8 +136,13 @@ export const Register = (props) => {
                     autoFocus
                     label="Email"
 />
-          <Button type="submit"> Sign in </Button>
+          <Button type="submit"> Register </Button>
       </Form>
     </main>
+                        <video className="videoTag" autoPlay loop muted>
+                        <source src={video} type="video/mp4" />
+                    </video>
+    </div>
+    
   );
 };

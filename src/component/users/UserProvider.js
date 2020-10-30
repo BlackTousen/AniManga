@@ -5,6 +5,23 @@ export const UserContext = createContext();
 export const UserProvider = (props) => {
   const [users, setUser] = useState();
 
+const getPersonalNotes = (x) => {
+  return fetch(`http://localhost:8088/notes?userId=${parseInt(localStorage.getItem("loginId"))}&animeId=${parseInt(x)}`)
+  .then((res) => res.json())
+
+}
+
+  const addPersonalNote = x => {
+    return fetch(`http://localhost:8088/notes/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(x),
+    });
+
+  }
+
   const addToList = (id,anime) => {
     return fetch(`http://localhost:8088/lists/${id}`, {
       method: "PATCH",
@@ -24,11 +41,19 @@ export const UserProvider = (props) => {
     });
   };
   const getWatchingList = () => {
-    return fetch(`http://localhost:8088/lists?_expand=user&userId=${localStorage.getItem("loginId")}`)
+    return fetch(`http://localhost:8088/lists?_expand=user&userId=${localStorage.getItem("loginId")}&type=anime`)
+    .then(res => res.json())
+  };
+  const getMangaList = () => {
+    return fetch(`http://localhost:8088/lists?_expand=user&userId=${localStorage.getItem("loginId")}&type=manga`)
     .then(res => res.json())
   };
   const getList = (x) => {
     return fetch(`http://localhost:8088/lists?_expand=user&userId=${localStorage.getItem("loginId")}&animeId=${x}`)
+    .then(res => res.json())
+  };
+  const getMangaList2 = (x) => {
+    return fetch(`http://localhost:8088/lists?_expand=user&userId=${localStorage.getItem("loginId")}&mangaId=${x}`)
     .then(res => res.json())
   };
   const PatchAnime = (x,info) => {
@@ -42,6 +67,16 @@ export const UserProvider = (props) => {
   };
   const deleteAnime = id => {
     return fetch(`http://localhost:8088/lists?animeId=${id}`)
+    .then(res => res.json())
+    .then(res => {
+      return fetch(`http://localhost:8088/lists/${res[0].id}`, {
+        method: "DELETE"
+      })
+    })
+    
+  }
+  const deleteManga = id => {
+    return fetch(`http://localhost:8088/lists?mangaId=${id}`)
     .then(res => res.json())
     .then(res => {
       return fetch(`http://localhost:8088/lists/${res[0].id}`, {
@@ -74,7 +109,9 @@ export const UserProvider = (props) => {
         users,
         getUsers,
         getUserById, getList, PatchAnime,
-        addToList, getWatchingList, createList, deleteAnime
+        addToList, getWatchingList, createList, deleteAnime,
+        addPersonalNote, getPersonalNotes, getMangaList, deleteManga,
+        getMangaList2
       }}
     >
       {" "}

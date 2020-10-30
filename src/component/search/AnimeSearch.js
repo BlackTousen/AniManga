@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Dropdown, Menu } from "semantic-ui-react";
+import { Dropdown, Input, Menu } from "semantic-ui-react";
 import { SearchContext } from "./SearchProvider";
-// import "./Animal.css"
+import "../auth/Login.css"
+import video from "../../video/video4.mp4"
+
 
 export const AnimeSearch = () => {
   const { setSearchTerms, setSearchTermsG } = useContext(SearchContext);
@@ -73,10 +75,11 @@ export const AnimeSearch = () => {
   genreOptions.sort(compare)
   return (
     <>
-      <div>
+    <div className="main">
+      <div className="text">
         <span>
           Name Search:
-          <input
+          <Input
             type="text"
             className="input--wide"
             onKeyUp={(keyEvent) => setSearchTerms(keyEvent.target.value)}
@@ -87,7 +90,6 @@ export const AnimeSearch = () => {
             <Dropdown
               placeholder="Select Genre"
               selection
-              // value={value}
               options={genreOptions}
               onChange={handleChange}
             />
@@ -95,6 +97,10 @@ export const AnimeSearch = () => {
         </span>
       </div>
       <p></p>
+      <video className="videoTag" autoPlay loop muted>
+          <source src={video} type="video/mp4" />
+        </video>
+        </div>
     </>
   );
 };

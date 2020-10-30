@@ -7,9 +7,13 @@ import {
   Divider,
   Button,
   Modal,
+  Feed,
 } from "semantic-ui-react";
 import { AnimeContext } from "../anime/Provider";
 import { CommentContext } from "./CommentProvider";
+import "../auth/Login.css"
+import video from "../../video/video3.mp4"
+
 
 export const CommentList = () => {
   const { comments, deleteComment, getComments, editComment } = useContext(
@@ -67,6 +71,8 @@ export const CommentList = () => {
 
   return (
     <>
+    <div className="main">
+    <div className="text">
       <Modal
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
@@ -101,13 +107,13 @@ export const CommentList = () => {
 
       <h2>Comments Section</h2>
       <Container>
-        {/* <Card.Group itemsPerRow={cardAlign(comments)}> */}
-        {comments.map((comment) => {
+        <Feed>
+        {comments.filter(comment => comment.animeName).map((comment) => {
           return (
             <>
               <Card key={`Comment ${comment.animeId}`} color="purple">
                 <Link to={`/anime/detail/${comment.animeId}`}>
-                  <Card.Header> {comment.animeName} </Card.Header>{" "}
+                  <Card.Header textAlign="center"> {comment.animeName} </Card.Header>{" "}
                 </Link>
                 <Card.Description content={comment.comment} />
                 <Card.Content
@@ -141,8 +147,14 @@ export const CommentList = () => {
             </>
           );
         })}
-        {/* </Card.Group> */}
+        </Feed>
       </Container>
+      </div>
+
+      <video className="videoTag" autoPlay loop muted>
+          <source src={video} type="video/mp4" />
+        </video>
+        </div>
     </>
   );
 };

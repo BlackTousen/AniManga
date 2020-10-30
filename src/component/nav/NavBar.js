@@ -1,7 +1,9 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./NavBar.css";
-import { Menu, Sticky } from "semantic-ui-react";
+import logo from "../../images/animanga.png"
+
+import { Menu, MenuHeader, Sticky } from "semantic-ui-react";
 
 export const NavBar = (props) => {
   return (
@@ -17,6 +19,11 @@ export const NavBar = (props) => {
                 color="purple"
                 as={NavLink} to="/anime">
           Anime
+        </Menu.Item>
+        <Menu.Item
+                color="purple"
+                as={NavLink} to="/manga">
+          Manga
         </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item

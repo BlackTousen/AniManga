@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { isCompositeComponent } from "react-dom/test-utils";
 
 export const AnimeContext = createContext();
@@ -6,6 +6,17 @@ export const AnimeContext = createContext();
 export const AnimeProvider = (props) => {
   const [anime, setAnime] = useState([]);
 
+  function handleErrors(response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
+}
+  const animeCheck = id => {
+    return fetch(`http://localhost:8088/lists?_expand=user&userId=${localStorage.getItem("loginId")}&animeId=${id}`)
+    .then(res => res.json())
+
+  }
   const getAnimeByPage = (offset = 0) => {
     return fetch(
       `https://kitsu.io/api/edge/anime?page[offset]=${offset}&sort=slug`
@@ -46,15 +57,19 @@ export const AnimeProvider = (props) => {
         return res.data;
       });
   };
-  
 
-  const getAnimeById = (id = Math.floor(Math.random() * 1200)) => {
+  const getAnimeById = (id = Math.floor(Math.random() * 14200 + 1)) => {
     return fetch(`https://kitsu.io/api/edge/anime/${id}`)
+      .then(handleErrors)
       .then((res) => res.json())
       .then((res) => {
         setAnime(res.data);
         return res;
-      });
+      })
+      .catch(e => {
+        return getAnimeById()
+      })
+;
   };
 
   return (
@@ -64,7 +79,9 @@ export const AnimeProvider = (props) => {
         getAnimeByPage,
         getAnimeById,
         getAnimeByGenre,
-        getAnimeByName, getAnimeByCategory
+        getAnimeByName,
+        getAnimeByCategory,
+        animeCheck
       }}
     >
       {" "}
