@@ -87,7 +87,7 @@ export const SearchList = () => {
   const history = useHistory();
 
   return (
-    <>
+    <> <div className="text">
       <Button 
       floated='left'
       inverted color="green"
@@ -142,6 +142,7 @@ export const SearchList = () => {
         }}
         content="Next Page"
         />     
+</div>
     </>
   );
 };

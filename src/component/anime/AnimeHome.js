@@ -49,7 +49,7 @@ export const AnimeHome = () => {
   const history = useHistory();
 
   return (
-    <>
+    <><div className="main">
       <div className="animePanel">
         <div className="animeList">
           <AnimeHomeCard key={filteredAnime.id} anime={filteredAnime} />
@@ -61,10 +61,10 @@ export const AnimeHome = () => {
           <AnimeSearchCard key={filteredAnime1.id} anime={filteredAnime1} />
       </div>
       </div>
-
       <video className="videoTag" autoPlay loop muted>
           <source src={video} type="video/mp4" />
         </video>
+        </div>
     </>
   );
 };

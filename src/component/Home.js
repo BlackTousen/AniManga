@@ -35,7 +35,7 @@ export const Home = () => {
 
   return (
     <>
-      <div>
+      <div className="main">
         {/* <Container className="homepage"> */}
         <h2 className="center">AniManga</h2>
         <div className="center">Welcome!</div>
@@ -67,10 +67,10 @@ export const Home = () => {
             </Card>
           </Link>
         </div>
-              </div>
-              <video className="videoTag" autoPlay loop muted>
+        <video className="videoTag" autoPlay loop muted>
           <source src={video1} type="video/mp4" />
         </video>
+              </div>
     </>
   );
 };

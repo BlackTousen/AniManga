@@ -72,6 +72,7 @@ export const MangaCommentList = () => {
 
   return (
     <>
+    <div className="main">
     <div className="text">
       <Modal
         onClose={() => setOpen(false)}
@@ -154,6 +155,7 @@ export const MangaCommentList = () => {
       <video className="videoTag" autoPlay loop muted>
           <source src={video} type="video/mp4" />
         </video>
+        </div>
     </>
   );
 };

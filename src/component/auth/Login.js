@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { Form, Button } from "semantic-ui-react";
+import { Form, Button, Modal } from "semantic-ui-react";
 import "./Login.css";
 import video from "../../video/video.mp4"
 
@@ -40,10 +40,10 @@ export const Login = (props) => {
   };
 
   return (
-    <div>
+    <div className="main">
         <main className="container--login">
       <dialog className="dialog dialog--auth" ref={existDialog}>
-        <div>User does not exist</div>
+        <div>Incorrect username/email combination</div>
         <button
           className="button--close"
           onClick={(e) => existDialog.current.close()}

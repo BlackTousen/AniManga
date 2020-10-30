@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Dropdown, Menu } from "semantic-ui-react";
+import { Dropdown, Input, Menu } from "semantic-ui-react";
 import { SearchContext } from "./SearchProvider";
 import "../auth/Login.css"
 import video from "../../video/video9.mp4"
@@ -75,15 +75,17 @@ export const MangaSearch = () => {
   genreOptions.sort(compare)
   return (
     <>
-      <div>
+    <div className="main">
+      <div className="text">
         <span>
           Name Search:
-          <input
+          <Input
             type="text"
             className="input--wide"
             onKeyUp={(keyEvent) => setSearchTerms(keyEvent.target.value)}
             placeholder="Search for an manga... "
-          />
+          /><br></br>
+           
           Genre Search:
           <Menu compact>
             <Dropdown
@@ -99,6 +101,7 @@ export const MangaSearch = () => {
       <video className="videoTag" autoPlay loop muted>
           <source src={video} type="video/mp4" />
         </video>
+        </div>
     </>
   );
 };

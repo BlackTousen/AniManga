@@ -63,7 +63,7 @@ export const MangaList = () => {
   const history = useHistory();
 
   return (
-    <>
+    <><div className="main">
       <div id="MangaList"></div>
       <h2 className="text">Currently Watching</h2>
       <div className="mangaList">
@@ -85,6 +85,7 @@ export const MangaList = () => {
       <video className="videoTag" autoPlay loop muted>
           <source src={video} type="video/mp4" />
         </video>
+        </div>
 
     </>
   );

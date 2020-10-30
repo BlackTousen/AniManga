@@ -63,7 +63,7 @@ export const Register = (props) => {
   };
 
   return (
-<div>
+<div className="main">
 <main >
       <dialog className="dialog dialog--password" ref={conflictDialog}>
         <div>Account with that email address already exists</div>
@@ -75,7 +75,7 @@ export const Register = (props) => {
         </button>
       </dialog>
       <dialog className="dialog dialog--password" ref={conflictDialog1}>
-        <div>Account with that email address already exists</div>
+        <div>Account with that username already exists</div>
         <button
           className="button--close"
           onClick={(e) => conflictDialog1.current.close()}

@@ -64,6 +64,7 @@ export const AnimeList = () => {
 
   return (
     <>
+    <div className="main">
       <div id="AnimeList"></div>
       <h2 className="text">Currently Watching</h2>
       <div className="animeList">
@@ -85,6 +86,7 @@ export const AnimeList = () => {
       <video className="videoTag" autoPlay loop muted>
           <source src={video} type="video/mp4" />
         </video>
+        </div>
 
     </>
   );

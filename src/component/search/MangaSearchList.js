@@ -88,6 +88,7 @@ export const MangaSearchList = () => {
 
   return (
     <>
+    <div className="text">
       <Button 
       floated='left'
       inverted color="green"
@@ -141,7 +142,8 @@ export const MangaSearchList = () => {
           nextPage();
         }}
         content="Next Page"
-        />     
+        />    
+        </div> 
     </>
   );
 };
