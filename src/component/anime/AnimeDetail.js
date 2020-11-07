@@ -99,7 +99,9 @@ export const AnimeDetail = () => {
       userId: parseInt(localStorage.getItem("loginId")),
     });
     document.getElementById("personalNote").value = "";
-    getPersonalNotes(animeId).then(setNotes)
+    getPersonalNotes(animeId).then(res => {
+      setNotes(res)
+    })
   };
 
   return (
@@ -238,7 +240,7 @@ export const AnimeDetail = () => {
                     placeholder="Viewing on Netflix"
                     onChange={handleChange}
                   />{" "}
-                  <Button content="Note" onClick={handleAddComment} />
+                  <Button content="Add" onClick={handleAddComment} />
                 </span>
               </div>
             </Card.Content>
