@@ -151,7 +151,7 @@ export const ApplicationViews = (props) => {
         <MangaProvider>
       <CommentProvider>
             <Route exact path="/manga/comments/:mangaId(\d+)">
-              <CommentListById />
+              <MangaCommentList />
               <video className="videoTag" autoPlay loop muted>
           <source src={video} type="video/mp4" />
         </video>

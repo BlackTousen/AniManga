@@ -237,7 +237,7 @@ export const MangaDetail = () => {
                     placeholder="Viewing on Netflix"
                     onChange={handleChange}
                   />{" "}
-                  <Button content="Note" onClick={handleAddComment} />
+                  <Button content="Add" onClick={handleAddComment} />
                 </span>
               </div>
             </Card.Content>
