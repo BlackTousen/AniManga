@@ -38,7 +38,7 @@ export const Home = () => {
       <div className="main">
         {/* <Container className="homepage"> */}
         <h2 className="center">AniManga</h2>
-        <div className="center">Welcome!</div>
+  <div className="center">Welcome, {localStorage.getItem("username")}!</div>
         <small className="center">
           Track your favorites, avoid the dislikes.
         </small>
